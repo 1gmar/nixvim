@@ -11,13 +11,15 @@
 
   outputs = {nixvim, ...}: let
     system = "x86_64-linux";
-    nvim = nixvim.legacyPackages.${system}.makeNixvim (import ./nixvim.nix);
+    config = import ./nixvim.nix;
+    nvim = nixvim.legacyPackages.${system}.makeNixvim config;
   in {
     checks.${system}.default = nixvim.lib.${system}.check.mkTestDerivationFromNvim {
       inherit nvim;
       name = "Neovim";
     };
-    nixosModules.default = nvim;
+    nixvimModule = config;
+    homeManagerModules.nixvim = nixvim.homeManagerModules.nixvim;
     packages.${system}.default = nvim;
   };
 }
