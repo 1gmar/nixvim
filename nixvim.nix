@@ -84,7 +84,7 @@
     '';
     extraConfigVim = ''
     '';
-    extraPackages = with pkgs; [alejandra];
+    extraPackages = with pkgs; [alejandra statix];
     extraPlugins = with pkgs.vimPlugins; [nvim-solarized-lua];
     plugins = {
       alpha = {
