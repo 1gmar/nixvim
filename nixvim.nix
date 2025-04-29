@@ -82,7 +82,7 @@
   '';
   extraConfigVim = ''
   '';
-  extraPackages = with pkgs; [alejandra statix];
+  extraPackages = with pkgs; [alejandra];
   extraPlugins = with pkgs.vimPlugins; [nvim-solarized-lua];
   plugins = {
     alpha = {
@@ -151,12 +151,6 @@
       ];
     };
     friendly-snippets.enable = true;
-    lint = {
-      enable = true;
-      lintersByFt = {
-        nix = ["statix"];
-      };
-    };
     lspkind = {
       enable = true;
       cmp = {
@@ -202,6 +196,14 @@
       enable = true;
       popupBorderStyle = "rounded";
       window.position = "right";
+    };
+    none-ls = {
+      enable = true;
+      sources = {
+        diagnostics = {
+          statix.enable = true;
+        };
+      };
     };
     telescope = {
       enable = true;

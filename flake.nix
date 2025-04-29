@@ -18,8 +18,9 @@
       inherit nvim;
       name = "Neovim";
     };
-    nixvimModule = config;
     homeManagerModules.nixvim = nixvim.homeManagerModules.nixvim;
+    nixvim.${system} = nixvim.legacyPackages.${system};
+    nixvimModule = config;
     packages.${system}.default = nvim;
   };
 }
