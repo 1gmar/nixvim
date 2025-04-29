@@ -19,7 +19,7 @@
       name = "Neovim";
     };
     homeManagerModules.nixvim = nixvim.homeManagerModules.nixvim;
-    nixvim.${system} = nixvim.legacyPackages.${system};
+    legacyPackages = nixvim.legacyPackages;
     nixvimModule = config;
     packages.${system}.default = nvim;
   };
