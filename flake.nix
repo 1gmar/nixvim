@@ -11,7 +11,7 @@
 
   outputs = {nixvim, ...}: let
     system = "x86_64-linux";
-    config = import ./nixvim.nix;
+    config = import ./config;
     nvim = nixvim.legacyPackages.${system}.makeNixvim config;
   in {
     checks.${system}.default = nixvim.lib.${system}.check.mkTestDerivationFromNvim {

@@ -3,6 +3,11 @@
   pkgs,
   ...
 }: {
+  imports = [./lsp];
+
+  lsp.enable = lib.mkDefault true;
+
+  # TODO extract to modules
   autoCmd = [
     {
       command = "lua vim.lsp.buf.format()";
@@ -14,7 +19,7 @@
     mapleader = " ";
     maplocalleader = " ";
   };
-  colorscheme = lib.mkForce "solarized-flat";
+  colorscheme = lib.mkDefault "solarized-flat";
   keymaps = [
     {
       action = ":m .+1<CR>==";
@@ -161,30 +166,6 @@
           path = "[PATH]";
           luasnip = "[SNIP]";
           buffer = "[BUFFER]";
-        };
-      };
-    };
-    lsp = {
-      enable = true;
-      inlayHints = true;
-      keymaps = {
-        lspBuf = {
-          K = "hover";
-          gd = "definition";
-          gD = "references";
-          gi = "implementation";
-          gt = "type_definition";
-          "<leader>rn" = "rename";
-          "<leader>ca" = "code_action";
-          "<leader>gf" = "format";
-        };
-      };
-      servers.nixd = {
-        enable = true;
-        settings = {
-          formatting.command = ["alejandra"];
-          nixpkgs.expr = "import (builtins.getFlake \"/home/igmar/nixos\").inputs.nixpkgs { }";
-          options.nixos.expr = "(builtins.getFlake \"/home/igmar/nixos\").nixosConfigurations.default.options";
         };
       };
     };
