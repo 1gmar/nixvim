@@ -12,10 +12,10 @@
       inlayHints = false;
       keymaps = {
         diagnostic = {
-          "<leader>do" = "open_float";
+          "<leader>eo" = "open_float";
           "]e" = "goto_next";
           "[e" = "goto_prev";
-          "<leader>e" = "show";
+          "<leader>ee" = "show";
         };
         lspBuf = {
           K = "hover";
