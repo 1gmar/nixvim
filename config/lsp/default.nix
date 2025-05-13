@@ -13,8 +13,9 @@
       keymaps = {
         diagnostic = {
           "<leader>do" = "open_float";
-          "<leader>dn" = "goto_next";
-          "<leader>dp" = "goto_prev";
+          "]e" = "goto_next";
+          "[e" = "goto_prev";
+          "<leader>e" = "show";
         };
         lspBuf = {
           K = "hover";

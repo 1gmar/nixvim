@@ -10,9 +10,9 @@
   };
 
   outputs = {nixvim, ...}: let
-    system = "x86_64-linux";
     config = import ./config;
     nvim = nixvim.legacyPackages.${system}.makeNixvim config;
+    system = "x86_64-linux";
   in {
     checks.${system}.default = nixvim.lib.${system}.check.mkTestDerivationFromNvim {
       inherit nvim;
