@@ -1,12 +1,14 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   options.lsp = {
     enable = lib.mkEnableOption "enable lsp module";
   };
   config = lib.mkIf config.lsp.enable {
+    extraPackages = with pkgs; [alejandra];
     plugins.lsp = {
       enable = true;
       inlayHints = false;
@@ -15,7 +17,7 @@
           "<leader>eo" = "open_float";
           "]e" = "goto_next";
           "[e" = "goto_prev";
-          "<leader>ee" = "show";
+          "<leader>ee" = "setloclist";
         };
         lspBuf = {
           K = "hover";
