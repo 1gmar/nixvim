@@ -21,6 +21,10 @@
       virtual_lines = false;
       virtual_text = true;
     };
+    extraConfigLuaPost = ''
+    '';
+    extraConfigVim = ''
+    '';
     globals = {
       mapleader = " ";
       maplocalleader = " ";
@@ -36,9 +40,5 @@
       softtabstop = 2;
       tabstop = 2;
     };
-    extraConfigLuaPost = ''
-    '';
-    extraConfigVim = ''
-    '';
   };
 }
