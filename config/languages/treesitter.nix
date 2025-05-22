@@ -12,6 +12,7 @@
       enable = true;
       folding = true;
       grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        lua
         nix
       ];
       settings = {

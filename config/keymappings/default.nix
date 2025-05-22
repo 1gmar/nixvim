@@ -9,6 +9,16 @@
   config = lib.mkIf config.keymappings.enable {
     keymaps = [
       {
+        action = "<C-o>A;";
+        key = "<A-;>";
+        mode = "i";
+      }
+      {
+        action = "<down><end>;";
+        key = "<A-S-;>";
+        mode = "i";
+      }
+      {
         action = ":m .+1<CR>==";
         key = "<A-j>";
         mode = "n";
