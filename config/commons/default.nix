@@ -14,7 +14,7 @@
         pattern = ["*.nix"];
       }
     ];
-    diagnostic.config = {
+    diagnostic.settings = {
       signs = true;
       underline = true;
       update_in_insert = false;
