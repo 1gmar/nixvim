@@ -7,11 +7,9 @@
     enable = lib.mkEnableOption "enable indent module";
   };
   config = lib.mkIf config.indent.enable {
-    plugins.mini = {
-      luaConfig.post = ''
-        require('mini.indentscope').gen_animation.quadratic({ easing = 'out', duration = 1000, unit = 'total' })
-      '';
-      modules.indentscope = {};
+    plugins.mini.modules.indentscope.draw = {
+      delay = 0;
+      animation.__raw = "function() return 0 end";
     };
   };
 }
