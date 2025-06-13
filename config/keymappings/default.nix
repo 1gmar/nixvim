@@ -14,7 +14,7 @@
         mode = "i";
       }
       {
-        action = "<down><end>;";
+        action = "<Esc>mxA;<Esc>`xa";
         key = "<A-S-;>";
         mode = "i";
       }

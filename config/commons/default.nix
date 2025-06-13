@@ -13,6 +13,11 @@
         event = ["BufWritePre"];
         pattern = ["*.nix"];
       }
+      {
+        command = "inoremap <buffer> <C-'> '''';<Esc>3ha";
+        event = ["FileType"];
+        pattern = ["nix"];
+      }
     ];
     diagnostic.settings = {
       signs = true;
