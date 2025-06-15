@@ -45,6 +45,10 @@
               priority = 10;
             }
             {
+              name = "nvim_lua";
+              priority = 8;
+            }
+            {
               name = "path";
               priority = 5;
             }
@@ -59,8 +63,9 @@
       };
       cmp-buffer.enable = true;
       cmp-nvim-lsp.enable = true;
-      cmp_luasnip.enable = true;
+      cmp-nvim-lua.enable = true;
       cmp-path.enable = true;
+      cmp_luasnip.enable = true;
       friendly-snippets.enable = true;
       lspkind = {
         enable = true;
