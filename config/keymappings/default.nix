@@ -7,6 +7,10 @@
     enable = lib.mkEnableOption "enable keymappings module";
   };
   config = lib.mkIf config.keymappings.enable {
+    globals = {
+      mapleader = " ";
+      maplocalleader = " ";
+    };
     keymaps = [
       {
         action = "<C-o>A;";
