@@ -12,8 +12,15 @@
       enable = true;
       folding = true;
       grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        gitignore
+        json
         lua
+        markdown
+        markdown_inline
         nix
+        vim
+        vimdoc
+        yaml
       ];
       settings = {
         highlight.enable = true;

@@ -13,6 +13,21 @@
     };
     keymaps = [
       {
+        action = "<cmd>split<CR>";
+        key = "<leader>wh";
+        mode = "n";
+      }
+      {
+        action = "<cmd>vsplit<CR>";
+        key = "<leader>wv";
+        mode = "n";
+      }
+      {
+        action = "<cmd>nohlsearch<CR>";
+        key = "<Esc>";
+        mode = "n";
+      }
+      {
         action = "<C-o>A;";
         key = "<A-;>";
         mode = "i";

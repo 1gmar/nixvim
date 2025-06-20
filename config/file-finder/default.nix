@@ -30,6 +30,14 @@
           action = "help_tags";
           mode = "n";
         };
+        "<leader>fd" = {
+          action = "diagnostics";
+          mode = "n";
+        };
+        "<leader>f." = {
+          action = "oldfiles";
+          mode = "n";
+        };
       };
     };
   };
