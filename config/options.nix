@@ -7,13 +7,6 @@
     enable = lib.mkEnableOption "enable vimOpts module";
   };
   config = lib.mkIf config.vimOpts.enable {
-    diagnostic.settings = {
-      signs = true;
-      underline = true;
-      update_in_insert = false;
-      virtual_lines = false;
-      virtual_text = true;
-    };
     opts = {
       background = "light";
       breakindent = true;

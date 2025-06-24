@@ -9,31 +9,65 @@
   };
   config = lib.mkIf config.lsp.enable {
     extraPackages = with pkgs; [alejandra];
-    plugins.lsp = {
-      enable = true;
-      inlayHints = false;
-      keymaps = {
-        diagnostic = {
-          "]e" = "goto_next";
-          "[e" = "goto_prev";
-        };
-        lspBuf = {
-          K = "hover";
-          gd = "definition";
-          gD = "declaration";
-          gr = "references";
-          gi = "implementation";
-          gt = "type_definition";
-          "<leader>rn" = "rename";
-          "<leader>ca" = "code_action";
-          "<leader>gf" = "format";
-        };
-      };
+    lsp = {
+      inlayHints.enable = false;
+      keymaps = [
+        {
+          key = "<leader>gh";
+          lspBufAction = "hover";
+          options.desc = "[g]o to [h]over documentation";
+        }
+        {
+          key = "<leader>gd";
+          lspBufAction = "definition";
+          options.desc = "[g]o to [d]efinition";
+        }
+        {
+          key = "<leader>gD";
+          lspBufAction = "declaration";
+          options.desc = "[g]o to [D]eclaration";
+        }
+        {
+          key = "<leader>gR";
+          lspBufAction = "references";
+          options.desc = "[g]o to [R]eferences";
+        }
+        {
+          key = "<leader>gi";
+          lspBufAction = "implementation";
+          options.desc = "[g]o to [i]mplementation";
+        }
+        {
+          key = "<leader>gt";
+          lspBufAction = "type_definition";
+          options.desc = "[g]o to [t]ype definition";
+        }
+        {
+          key = "<leader>gr";
+          lspBufAction = "rename";
+          options.desc = "[g]o [r]ename";
+        }
+        {
+          key = "<leader>ca";
+          lspBufAction = "code_action";
+          options.desc = "[c]ode [a]ction";
+        }
+        {
+          key = "<leader>gf";
+          lspBufAction = "format";
+          options.desc = "[g]o [f]ormat";
+        }
+      ];
       servers.nixd = {
         enable = true;
         settings = {
-          formatting.command = ["alejandra"];
-          nixpkgs.expr = "import <nixpkgs> { }";
+          cmd = ["nixd"];
+          filetypes = ["nix"];
+          root_markers = ["flake.nix" "git"];
+          settings.nixd = {
+            formatting.command = ["alejandra"];
+            nixpkgs.expr = "import <nixpkgs> { }";
+          };
         };
       };
     };

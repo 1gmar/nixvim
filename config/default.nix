@@ -9,11 +9,14 @@
     ./ui
 
     ./autocommands.nix
+    ./diagnostics.nix
     ./options.nix
   ];
 
+  clipboard.providers.xclip.enable = true;
   autocommands.enable = lib.mkDefault true;
   completion.enable = lib.mkDefault true;
+  diagnostic-config.enable = lib.mkDefault true;
   file-finder.enable = lib.mkDefault true;
   file-manager.enable = lib.mkDefault true;
   keymappings.enable = lib.mkDefault true;

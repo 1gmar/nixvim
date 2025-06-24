@@ -20,6 +20,7 @@
     };
     homeManagerModules.nixvim = nixvim.homeManagerModules.nixvim;
     inherit (nixvim) legacyPackages;
+    inherit (nixvim) lib;
     nixvimModule = config;
     packages.${system}.default = nvim;
   };
