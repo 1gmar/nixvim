@@ -8,23 +8,39 @@
   };
   config = lib.mkIf config.diagnostic-config.enable {
     diagnostic.settings = {
-      signs = true;
+      severity_sort = true;
+      signs = {
+        __raw = ''
+          {
+            linehl = {
+              [vim.diagnostic.severity.ERROR] = "DiagnosticErrorLine",
+              [vim.diagnostic.severity.WARN] = "DiagnosticWarnLine",
+            },
+            text = {
+              [vim.diagnostic.severity.ERROR] = "",
+              [vim.diagnostic.severity.HINT] = "",
+              [vim.diagnostic.severity.INFO] = "",
+              [vim.diagnostic.severity.WARN] = "",
+            },
+          }
+        '';
+      };
       underline = true;
       update_in_insert = false;
       virtual_lines = false;
-      virtual_text = true;
+      virtual_text = false;
     };
-    keymaps = [
-      {
-        action = "<cmd>lua vim.diagnostic.goto_next()<CR>";
-        key = "]e";
-        mode = "n";
-      }
-      {
-        action = "<cmd>lua vim.diagnostic.goto_prev()<CR>";
-        key = "[e";
-        mode = "n";
-      }
-    ];
+    highlightOverride = {
+      DiagnosticErrorLine = {
+        bg = "#fdf6e3";
+        fg = "#dc322f";
+        reverse = true;
+      };
+      DiagnosticWarnLine = {
+        bg = "#fdf6e3";
+        fg = "#b58900";
+        reverse = true;
+      };
+    };
   };
 }
