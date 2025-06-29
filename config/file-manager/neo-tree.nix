@@ -26,6 +26,7 @@
     ];
     plugins.neo-tree = {
       enable = true;
+      filesystem.hijackNetrwBehavior = "open_default";
       popupBorderStyle = "rounded";
       window.position = "right";
     };
