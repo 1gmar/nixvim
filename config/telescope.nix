@@ -3,10 +3,10 @@
   lib,
   ...
 }: {
-  options.file-finder = {
-    enable = lib.mkEnableOption "enable file-finder module";
+  options.telescope = {
+    enable = lib.mkEnableOption "enable telescope module";
   };
-  config = lib.mkIf config.file-finder.enable {
+  config = lib.mkIf config.telescope.enable {
     plugins.telescope = {
       enable = true;
       extensions = {
