@@ -26,7 +26,7 @@
       scrolloff = 8;
       shiftwidth = 2;
       showmode = false;
-      signcolumn = "number";
+      signcolumn = "yes";
       smartcase = true;
       smartindent = true;
       softtabstop = 2;
