@@ -9,6 +9,7 @@
     ./delimiters.nix
     ./icons.nix
     ./indent.nix
+    ./mini-notify.nix
     ./statusline.nix
   ];
   options.ui = {
@@ -20,6 +21,7 @@
     delimiters.enable = lib.mkDefault true;
     icons.enable = lib.mkDefault true;
     indent.enable = lib.mkDefault true;
+    mini-notify.enable = lib.mkDefault true;
     statusline.enable = lib.mkDefault true;
   };
 }
