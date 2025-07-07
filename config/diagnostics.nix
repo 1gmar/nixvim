@@ -33,7 +33,7 @@
     highlightOverride = {
       DiagnosticErrorLine = {
         bg = "#fdf6e3";
-        fg = "#dc322f";
+        fg = "#cb4b16";
         reverse = true;
       };
       DiagnosticWarnLine = {
