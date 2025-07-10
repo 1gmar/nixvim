@@ -72,6 +72,11 @@
         key = "<Esc>";
         mode = "t";
       }
+      {
+        action = "<C-\\><C-n>";
+        key = "<C-[>";
+        mode = "t";
+      }
     ];
   };
 }

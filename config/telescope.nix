@@ -10,6 +10,15 @@
     plugins.telescope = {
       enable = true;
       extensions = {
+        fzf-native = {
+          enable = true;
+          settings = {
+            case_mode = "smart_case";
+            fuzzy = true;
+            override_file_sorter = true;
+            override_generic_sorter = true;
+          };
+        };
         live-grep-args.enable = true;
         ui-select = {
           enable = true;
@@ -54,6 +63,20 @@
             desc = "[f]ind [d]iagnostics";
           };
         };
+        "<leader>fr" = {
+          action = "oldfiles cwd_only=true";
+          mode = "n";
+          options = {
+            desc = "[f]ind [r]ecent files";
+          };
+        };
+        "<leader>vs" = {
+          action = "git_status";
+          mode = "n";
+          options = {
+            desc = "[v]ersion control [s]tatus";
+          };
+        };
         "<leader>fk" = {
           action = "keymaps";
           mode = "n";
@@ -79,6 +102,14 @@
             theme = "dropdown";
           };
           find_files = {
+            previewer = false;
+            theme = "dropdown";
+          };
+          git_status = {
+            initial_mode = "normal";
+            theme = "ivy";
+          };
+          oldfiles = {
             previewer = false;
             theme = "dropdown";
           };
