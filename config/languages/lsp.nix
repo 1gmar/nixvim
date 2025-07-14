@@ -67,18 +67,6 @@
           options.desc = "[g]o [f]ormat";
         }
       ];
-      servers.nixd = {
-        enable = true;
-        settings = {
-          cmd = ["nixd"];
-          filetypes = ["nix"];
-          root_markers = ["flake.nix" "git"];
-          settings.nixd = {
-            formatting.command = ["alejandra"];
-            nixpkgs.expr = lib.mkDefault "import <nixpkgs> { }";
-          };
-        };
-      };
     };
   };
 }
