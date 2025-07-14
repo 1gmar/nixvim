@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./ansi-coloring.nix
     ./colorscheme.nix
     ./dashboard.nix
     ./delimiters.nix
@@ -16,6 +17,7 @@
     enable = lib.mkEnableOption "enable ui module";
   };
   config = lib.mkIf config.ui.enable {
+    ansi-coloring.enable = lib.mkDefault true;
     color-scheme.enable = lib.mkDefault true;
     dashboard.enable = lib.mkDefault true;
     delimiters.enable = lib.mkDefault true;

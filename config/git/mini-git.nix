@@ -2,15 +2,28 @@
   config,
   lib,
   ...
-}: {
+}: let
+  optColorArg =
+    if config.ansi-coloring.enable
+    then "--color-by-age"
+    else "";
+  optColorCmd =
+    if config.ansi-coloring.enable
+    then "vim.cmd('AnsiColorize')"
+    else "";
+in {
   options.mini-git = {
     enable = lib.mkEnableOption "enable mini-git module";
   };
   config = lib.mkIf config.mini-git.enable {
-    # TODO git blame --date=human config/git/mini-diff.nix | awk '{split($0, L, "("); split(L[1], H, " "); split(L[2], S, ")"); print H[1], S[1]}' | awk 'NF{NF--};1'
     autoCmd = [
       {
         callback.__raw = "require('git-blame').git_blame_align";
+        event = "User";
+        pattern = ["MiniGitCommandSplit"];
+      }
+      {
+        callback.__raw = "require('git-blame').git_blame_trim";
         event = "User";
         pattern = ["MiniGitCommandSplit"];
       }
@@ -20,11 +33,20 @@
     };
     keymaps = [
       {
+        action.__raw = "require('git-blame').git_blame_toggle";
+        key = "<leader>gb";
+        mode = ["n"];
+      }
+      {
         action = "<cmd>lua MiniGit.show_at_cursor()<cr>";
         key = "<leader>gs";
         mode = ["n" "x"];
       }
     ];
     plugins.mini.modules.git = {};
+    userCommands."MiniGitBlame" = {
+      bang = true;
+      command = "lua vim.cmd('vert lefta Git blame --date=human --show-name ${optColorArg} -- %'); vim.cmd(':vert res 50'); ${optColorCmd}";
+    };
   };
 }
