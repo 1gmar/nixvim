@@ -13,6 +13,31 @@
     };
     keymaps = [
       {
+        action = "<Home>";
+        key = "<C-A>";
+        mode = "c";
+      }
+      {
+        action = "<S-Left>";
+        key = "<A-b>";
+        mode = "c";
+      }
+      {
+        action = "<S-Right>";
+        key = "<A-f>";
+        mode = "c";
+      }
+      {
+        action = "<Left>";
+        key = "<C-b>";
+        mode = "c";
+      }
+      {
+        action = "<Right>";
+        key = "<C-f>";
+        mode = "c";
+      }
+      {
         action = "<cmd>split<CR>";
         key = "<leader>wh";
         mode = "n";

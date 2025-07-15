@@ -29,7 +29,7 @@
         incremental_selection = {
           enable = true;
           keymaps = {
-            init_selection = "<CR>";
+            init_selection = "<C-CR>";
             node_decremental = "<C-j>";
             node_incremental = "<C-k>";
             scope_incremental = "<C-h>";
