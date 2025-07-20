@@ -1,12 +1,14 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   options.telescope = {
     enable = lib.mkEnableOption "enable telescope module";
   };
   config = lib.mkIf config.telescope.enable {
+    extraPackages = with pkgs; [ripgrep];
     plugins.telescope = {
       enable = true;
       extensions = {

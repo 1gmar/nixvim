@@ -1,4 +1,5 @@
 {
+  colors,
   config,
   lib,
   ...
@@ -30,15 +31,15 @@
       virtual_lines = false;
       virtual_text = false;
     };
-    highlightOverride = {
+    highlightOverride = with colors; {
       DiagnosticErrorLine = {
-        bg = "#fdf6e3";
-        fg = "#cb4b16";
+        bg = background;
+        fg = orange;
         reverse = true;
       };
       DiagnosticWarnLine = {
-        bg = "#fdf6e3";
-        fg = "#b58900";
+        bg = background;
+        fg = yellow;
         reverse = true;
       };
     };

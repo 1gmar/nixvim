@@ -9,7 +9,7 @@
   config = lib.mkIf config.keymappings.enable {
     globals = {
       mapleader = " ";
-      maplocalleader = " ";
+      maplocalleader = "\\";
     };
     keymaps = [
       {

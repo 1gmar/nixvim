@@ -9,9 +9,36 @@
     };
   };
 
-  outputs = {nixvim, ...}: let
+  outputs = {
+    nixpkgs,
+    nixvim,
+    ...
+  }: let
+    colors = {
+      background = "#fdf6e3";
+      backgroundHigh = "#eee8d5";
+      blue = "#268bd2";
+      cyan = "#2aa198";
+      foreground0 = "#839496";
+      foregroundEmph = "#586e75";
+      green = "#859900";
+      magenta = "#d33682";
+      orange = "#cb4b16";
+      red = "#dc322f";
+      secondaryContent = "#93a1a1";
+      text = "#657b83";
+      violet = "#6c71c4";
+      yellow = "#b58900";
+    };
     config = import ./config;
-    nvim = nixvim.legacyPackages.${system}.makeNixvim config;
+    pkgs = import nixpkgs {inherit system;};
+    nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
+      module = config;
+      inherit pkgs;
+      extraSpecialArgs = {
+        inherit colors;
+      };
+    };
     system = "x86_64-linux";
   in {
     checks.${system}.default = nixvim.lib.${system}.check.mkTestDerivationFromNvim {

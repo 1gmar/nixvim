@@ -1,4 +1,5 @@
 {
+  colors,
   config,
   lib,
   ...
@@ -7,10 +8,10 @@
     enable = lib.mkEnableOption "enable mini-diff module";
   };
   config = lib.mkIf config.mini-diff.enable {
-    highlightOverride = {
-      MiniDiffSignAdd = {fg = "#859900";};
-      MiniDiffSignChange = {fg = "#b58900";};
-      MiniDiffSignDelete = {fg = "#d33682";};
+    highlightOverride = with colors; {
+      MiniDiffSignAdd = {fg = green;};
+      MiniDiffSignChange = {fg = yellow;};
+      MiniDiffSignDelete = {fg = magenta;};
     };
     keymaps = [
       {
