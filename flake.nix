@@ -30,10 +30,9 @@
       violet = "#6c71c4";
       yellow = "#b58900";
     };
-    config = import ./config;
     pkgs = import nixpkgs {inherit system;};
     nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
-      module = config;
+      module = ./config;
       inherit pkgs;
       extraSpecialArgs = {
         inherit colors;
@@ -45,10 +44,7 @@
       inherit nvim;
       name = "Neovim";
     };
-    homeManagerModules.nixvim = nixvim.homeManagerModules.nixvim;
-    inherit (nixvim) legacyPackages;
     inherit (nixvim) lib;
-    nixvimModule = config;
     packages.${system}.default = nvim;
   };
 }
