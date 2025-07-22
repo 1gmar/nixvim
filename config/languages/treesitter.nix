@@ -11,18 +11,17 @@
     plugins.treesitter = {
       enable = true;
       folding = true;
-      grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars;
-        lib.mkDefault [
-          gitignore
-          json
-          lua
-          markdown
-          markdown_inline
-          nix
-          vim
-          vimdoc
-          yaml
-        ];
+      grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        gitignore
+        json
+        lua
+        markdown
+        markdown_inline
+        nix
+        vim
+        vimdoc
+        yaml
+      ];
       settings = {
         highlight.enable = true;
         indent.enable = true;
