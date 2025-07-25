@@ -1,14 +1,12 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: {
   options.lsp = {
     enable = lib.mkEnableOption "enable lsp module";
   };
   config = lib.mkIf config.lsp.enable {
-    extraPackages = with pkgs; [alejandra];
     lsp = {
       inlayHints.enable = false;
       keymaps = [

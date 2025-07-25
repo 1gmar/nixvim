@@ -16,6 +16,9 @@
         diagnostics = {
           statix.enable = true;
         };
+        formatting = {
+          xmllint.enable = true;
+        };
       };
     };
   };
