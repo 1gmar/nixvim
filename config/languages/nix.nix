@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  system,
   ...
 }: {
   options.nix = {
@@ -18,6 +19,7 @@
         settings.nixd = {
           formatting.command = lib.mkDefault ["alejandra"];
           nixpkgs.expr = lib.mkDefault "import <nixpkgs> { }";
+          options.nixvim.expr = "(builtins.getFlake \"github:1gmar/nixvim\").packages.${system}.default.options";
         };
       };
     };

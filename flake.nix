@@ -30,14 +30,15 @@
       violet = "#6c71c4";
       yellow = "#b58900";
     };
-    pkgs = import nixpkgs {inherit system;};
     nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
       module = ./config;
       inherit pkgs;
       extraSpecialArgs = {
         inherit colors;
+        inherit system;
       };
     };
+    pkgs = import nixpkgs {inherit system;};
     system = "x86_64-linux";
   in {
     checks.${system}.default = nixvim.lib.${system}.check.mkTestDerivationFromNvim {
