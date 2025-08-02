@@ -16,7 +16,7 @@ M.git_blame_trim = function(au_data)
 
   local buf_id = vim.fn.winbufnr(au_data.data.win_stdout)
   local trimmed_lines = vim.iter(vim.split(au_data.data.stdout, '\n'))
-      :map(function(line) return line:gsub('(%x+)%s[%w%./%-_]+%s+%((.+%w+)%s+%d+%).*', '%1 %2') end)
+      :map(function(line) return line:gsub('(%x+)%s[%w%./%-_]*%s*%((.+%w+)%s+%d+%).*', '%1 %2') end)
       :map(function(str, _) return str end)
       :totable()
   vim.api.nvim_buf_set_lines(buf_id, 0, -1, false, trimmed_lines)
