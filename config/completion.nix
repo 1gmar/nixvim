@@ -69,14 +69,16 @@
       friendly-snippets.enable = true;
       lspkind = {
         enable = true;
-        cmp = {
-          enable = true;
-          menu = {
-            nvim_lsp = "[LSP]";
-            nvim_lua = "[API]";
-            path = "[PATH]";
-            luasnip = "[SNIP]";
-            buffer = "[BUFFER]";
+        settings = {
+          cmp = {
+            enable = true;
+            menu = {
+              nvim_lsp = "[LSP]";
+              nvim_lua = "[API]";
+              path = "[PATH]";
+              luasnip = "[SNIP]";
+              buffer = "[BUFFER]";
+            };
           };
         };
       };
