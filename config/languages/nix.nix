@@ -9,7 +9,7 @@
     enable = lib.mkEnableOption "enable nix module";
   };
   config = lib.mkIf config.nix.enable {
-    extraPackages = with pkgs; [alejandra];
+    extraPackages = with pkgs; [nixfmt];
     lsp.servers.nixd = {
       enable = true;
       settings = {
@@ -17,7 +17,7 @@
         filetypes = ["nix"];
         root_markers = ["flake.nix" "git"];
         settings.nixd = {
-          formatting.command = lib.mkDefault ["alejandra"];
+          formatting.command = lib.mkDefault ["nixfmt"];
           nixpkgs.expr = lib.mkDefault "import <nixpkgs> { }";
           options.nixvim.expr = "(builtins.getFlake \"github:1gmar/nixvim\").packages.${system}.default.options";
         };

@@ -9,7 +9,7 @@
   config = lib.mkIf config.mini-files.enable {
     keymaps = [
       {
-        action = "<cmd>lua MiniFiles.open()<CR>";
+        action = "<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>";
         key = "<leader>mf";
         mode = "n";
       }

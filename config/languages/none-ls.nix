@@ -17,6 +17,12 @@
           statix.enable = true;
         };
         formatting = {
+          prettier = {
+            enable = true;
+            settings = {
+              filetypes = ["css" "html" "json" "jsonc" "yaml"];
+            };
+          };
           xmllint.enable = true;
         };
       };

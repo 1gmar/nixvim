@@ -12,14 +12,21 @@
       enable = true;
       folding = true;
       grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        css
+        csv
+        gitcommit
         gitignore
+        html
         json
         lua
         markdown
         markdown_inline
         nix
+        properties
+        toml
         vim
         vimdoc
+        xml
         yaml
       ];
       settings = {
