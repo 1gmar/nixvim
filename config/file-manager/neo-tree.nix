@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options.neo-tree = {
     enable = lib.mkEnableOption "enable neo-tree module";
   };
@@ -26,9 +27,11 @@
     ];
     plugins.neo-tree = {
       enable = true;
-      filesystem.hijackNetrwBehavior = "open_default";
-      popupBorderStyle = "rounded";
-      window.position = "right";
+      settings = {
+        filesystem.hijack_netrw_behavior = "open_default";
+        popup_border_style = "rounded";
+        window.position = "right";
+      };
     };
   };
 }

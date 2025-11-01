@@ -3,16 +3,17 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   options.lua = {
     enable = lib.mkEnableOption "enable lua module";
   };
   config = lib.mkIf config.lua.enable {
     lsp.servers.lua_ls = {
       enable = true;
-      settings = {
-        cmd = ["lua-language-server"];
-        filetypes = ["lua"];
+      config = {
+        cmd = [ "lua-language-server" ];
+        filetypes = [ "lua" ];
         root_markers = [
           ".luarc.json"
           ".luarc.jsonc"
@@ -32,12 +33,15 @@
             };
           };
           runtime = {
-            path = ["lua/?.lua" "lua/?/init.lua"];
+            path = [
+              "lua/?.lua"
+              "lua/?/init.lua"
+            ];
             version = "LuaJIT";
           };
           workspace = {
             checkThirdParty = false;
-            library = ["${pkgs.neovim-unwrapped}/share/nvim/runtime"];
+            library = [ "${pkgs.neovim-unwrapped}/share/nvim/runtime" ];
           };
         };
       };
