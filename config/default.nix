@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   imports = [
     ./file-manager
     ./git
@@ -27,5 +28,4 @@
   vimOpts.enable = lib.mkDefault true;
 
   clipboard.providers.xclip.enable = lib.mkDefault true;
-  plugins.mini.enable = lib.mkDefault true;
 }

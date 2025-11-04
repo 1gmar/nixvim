@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options.mini-notify = {
     enable = lib.mkEnableOption "enable mini-notify module";
   };
@@ -10,8 +11,9 @@
     extraConfigLuaPost = ''
       vim.notify = require('mini.notify').make_notify()
     '';
-    plugins.mini.modules.notify = {
-      lsp_progress.enable = false;
+    plugins.mini-notify = {
+      enable = true;
+      settings.lsp_progress.enable = false;
     };
   };
 }

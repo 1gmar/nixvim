@@ -2,16 +2,12 @@
   config,
   lib,
   ...
-}: let
-  optColorArg =
-    if config.ansi-coloring.enable
-    then "--color-by-age"
-    else "";
-  optColorCmd =
-    if config.ansi-coloring.enable
-    then "vim.cmd('AnsiColorize')"
-    else "";
-in {
+}:
+let
+  optColorArg = if config.ansi-coloring.enable then "--color-by-age" else "";
+  optColorCmd = if config.ansi-coloring.enable then "vim.cmd('AnsiColorize')" else "";
+in
+{
   options.mini-git = {
     enable = lib.mkEnableOption "enable mini-git module";
   };
@@ -20,12 +16,12 @@ in {
       {
         callback.__raw = "require('git-blame').git_blame_align";
         event = "User";
-        pattern = ["MiniGitCommandSplit"];
+        pattern = [ "MiniGitCommandSplit" ];
       }
       {
         callback.__raw = "require('git-blame').git_blame_trim";
         event = "User";
-        pattern = ["MiniGitCommandSplit"];
+        pattern = [ "MiniGitCommandSplit" ];
       }
     ];
     extraFiles = {
@@ -35,15 +31,18 @@ in {
       {
         action.__raw = "require('git-blame').git_blame_toggle";
         key = "<leader>gb";
-        mode = ["n"];
+        mode = [ "n" ];
       }
       {
         action = "<cmd>lua MiniGit.show_at_cursor()<cr>";
         key = "<leader>gs";
-        mode = ["n" "x"];
+        mode = [
+          "n"
+          "x"
+        ];
       }
     ];
-    plugins.mini.modules.git = {};
+    plugins.mini-git.enable = true;
     userCommands."MiniGitBlame" = {
       bang = true;
       command = "lua vim.cmd('vert lefta Git blame --date=human --show-name ${optColorArg} -- %'); vim.cmd(':vert res 50'); ${optColorCmd}";

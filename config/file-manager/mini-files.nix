@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options.mini-files = {
     enable = lib.mkEnableOption "enable mini-files module";
   };
@@ -14,8 +15,9 @@
         mode = "n";
       }
     ];
-    plugins.mini.modules.files = {
-      options.use_as_default_explorer = false;
+    plugins.mini-files = {
+      enable = true;
+      settings.options.use_as_default_explorer = false;
     };
   };
 }
