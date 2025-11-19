@@ -7,7 +7,6 @@
     ./text-editing
     ./ui
 
-    ./autocommands.nix
     ./completion.nix
     ./diagnostics.nix
     ./keymappings.nix
@@ -15,7 +14,6 @@
     ./telescope.nix
   ];
 
-  autocommands.enable = lib.mkDefault true;
   completion.enable = lib.mkDefault true;
   diagnostic-config.enable = lib.mkDefault true;
   file-manager.enable = lib.mkDefault true;

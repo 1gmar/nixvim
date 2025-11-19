@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options.lsp = {
     enable = lib.mkEnableOption "enable lsp module";
   };
@@ -11,10 +12,10 @@
       inlayHints.enable = false;
       keymaps = [
         {
-          key = "<leader>gh";
-          lspBufAction = "hover";
+          key = "<A-p>";
+          lspBufAction = "signature_help";
           mode = "n";
-          options.desc = "[g]o to [h]over documentation";
+          options.desc = "show type signature";
         }
         {
           key = "<leader>gd";
@@ -65,6 +66,17 @@
           options.desc = "[g]o [f]ormat";
         }
       ];
+    };
+    plugins.lsp-signature = {
+      enable = true;
+      settings = {
+        extra_trigger_chars = [
+          "("
+          ","
+        ];
+        hint_prefix = "󱄑 ";
+        toggle_key = "<A-p>";
+      };
     };
   };
 }

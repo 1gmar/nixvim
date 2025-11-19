@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options.keymappings = {
     enable = lib.mkEnableOption "enable keymappings module";
   };
@@ -14,7 +15,7 @@
     keymaps = [
       {
         action = "<Home>";
-        key = "<C-A>";
+        key = "<C-a>";
         mode = "c";
       }
       {

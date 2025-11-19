@@ -3,12 +3,13 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   options.telescope = {
     enable = lib.mkEnableOption "enable telescope module";
   };
   config = lib.mkIf config.telescope.enable {
-    extraPackages = with pkgs; [ripgrep];
+    extraPackages = with pkgs; [ ripgrep ];
     plugins.telescope = {
       enable = true;
       extensions = {
@@ -89,6 +90,12 @@
       };
       settings = {
         defaults = {
+          mappings = {
+            i = {
+              "<S-Enter>" = "select_vertical";
+              "<A-Enter>" = "select_horizontal";
+            };
+          };
           prompt_prefix = "  ";
           selection_caret = " ";
         };

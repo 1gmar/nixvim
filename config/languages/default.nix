@@ -1,23 +1,19 @@
+{ config, lib, ... }:
 {
-  config,
-  lib,
-  ...
-}: {
   imports = [
-    ./lsp.nix
+    ./common
+    ./java
+
     ./lua.nix
     ./nix.nix
-    ./none-ls.nix
-    ./treesitter.nix
   ];
   options.languages = {
     enable = lib.mkEnableOption "enable languages module";
   };
   config = lib.mkIf config.languages.enable {
-    lsp.enable = lib.mkDefault true;
+    common.enable = lib.mkDefault true;
+    java.enable = lib.mkDefault false;
     lua.enable = lib.mkDefault true;
     nix.enable = lib.mkDefault true;
-    none-ls.enable = lib.mkDefault true;
-    treesitter.enable = lib.mkDefault true;
   };
 }

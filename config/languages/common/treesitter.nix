@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   options.treesitter = {
     enable = lib.mkEnableOption "enable treesitter module";
   };
@@ -18,10 +19,8 @@
         gitignore
         html
         json
-        lua
         markdown
         markdown_inline
-        nix
         properties
         toml
         vim

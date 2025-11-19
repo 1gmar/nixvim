@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options.vimOpts = {
     enable = lib.mkEnableOption "enable vimOpts module";
   };
@@ -14,6 +15,7 @@
     opts = {
       background = "light";
       breakindent = true;
+      colorcolumn = "100";
       cursorline = true;
       expandtab = true;
       fileencoding = "utf-8";
