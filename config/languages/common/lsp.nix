@@ -6,8 +6,19 @@
 {
   options.lsp = {
     enable = lib.mkEnableOption "enable lsp module";
+    fmtOnSaveExts = lib.mkOption {
+      type = with lib.types; listOf str;
+      default = [ ];
+    };
   };
   config = lib.mkIf config.lsp.enable {
+    autoCmd = [
+      {
+        command = "lua vim.lsp.buf.format()";
+        event = [ "BufWritePre" ];
+        pattern = map (ext: "*." + ext) config.lsp.fmtOnSaveExts;
+      }
+    ];
     lsp = {
       inlayHints.enable = false;
       keymaps = [

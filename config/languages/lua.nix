@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  tsGrmrPkgs,
   ...
 }:
 {
@@ -9,13 +10,7 @@
     enable = lib.mkEnableOption "enable lua module";
   };
   config = lib.mkIf config.lua.enable {
-    autoCmd = [
-      {
-        command = "lua vim.lsp.buf.format()";
-        event = [ "BufWritePre" ];
-        pattern = [ "*.lua" ];
-      }
-    ];
+    lsp.fmtOnSaveExts = [ "lua" ];
     lsp.servers.lua_ls = {
       enable = true;
       config = {
@@ -57,6 +52,6 @@
         };
       };
     };
-    plugins.treesitter.grammarPackages = [ pkgs.vimPlugins.nvim-treesitter.builtGrammars.lua ];
+    plugins.treesitter.grammarPackages = [ tsGrmrPkgs.lua ];
   };
 }

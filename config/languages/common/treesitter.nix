@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  tsGrmrPkgs,
   ...
 }:
 {
@@ -12,7 +12,7 @@
     plugins.treesitter = {
       enable = true;
       folding = true;
-      grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+      grammarPackages = with tsGrmrPkgs; [
         css
         csv
         gitcommit

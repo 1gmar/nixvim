@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  tsGrmrPkgs,
   ...
 }:
 {
@@ -15,13 +16,7 @@
     };
   };
   config = lib.mkIf config.java.enable {
-    autoCmd = [
-      {
-        command = "lua vim.lsp.buf.format()";
-        event = [ "BufWritePre" ];
-        pattern = [ "*.java" ];
-      }
-    ];
+    lsp.fmtOnSaveExts = [ "java" ];
     extraFiles = {
       "lua/jdtls-utils.lua".source = ./jdtls-utils.lua;
     };
@@ -139,7 +134,7 @@
         };
       };
       none-ls.sources.formatting.google_java_format.enable = true;
-      treesitter.grammarPackages = [ pkgs.vimPlugins.nvim-treesitter.builtGrammars.java ];
+      treesitter.grammarPackages = [ tsGrmrPkgs.java ];
     };
   };
 }

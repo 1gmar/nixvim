@@ -38,6 +38,7 @@
         extraSpecialArgs = {
           inherit colors;
           inherit system;
+          tsGrmrPkgs = pkgs.vimPlugins.nvim-treesitter.builtGrammars;
         };
       };
       pkgs = import nixpkgs { inherit system; };

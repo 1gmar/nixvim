@@ -3,6 +3,7 @@
   lib,
   pkgs,
   system,
+  tsGrmrPkgs,
   ...
 }:
 {
@@ -12,16 +13,12 @@
   config = lib.mkIf config.nix.enable {
     autoCmd = [
       {
-        command = "lua vim.lsp.buf.format()";
-        event = [ "BufWritePre" ];
-        pattern = [ "*.nix" ];
-      }
-      {
         command = "inoremap <buffer> <C-'> '''';<Esc>3ha";
         event = [ "FileType" ];
         pattern = [ "nix" ];
       }
     ];
+    lsp.fmtOnSaveExts = [ "nix" ];
     extraPackages = [ pkgs.nixfmt ];
     lsp.servers.nixd = {
       enable = true;
@@ -48,7 +45,7 @@
           statix.enable = true;
         };
       };
-      treesitter.grammarPackages = [ pkgs.vimPlugins.nvim-treesitter.builtGrammars.nix ];
+      treesitter.grammarPackages = [ tsGrmrPkgs.nix ];
     };
   };
 }

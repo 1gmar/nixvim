@@ -9,20 +9,15 @@
     enable = lib.mkEnableOption "enable none-ls module";
   };
   config = lib.mkIf config.none-ls.enable {
-    autoCmd = [
-      {
-        command = "lua vim.lsp.buf.format()";
-        event = [ "BufWritePre" ];
-        pattern = [
-          "*.css"
-          "*.html"
-          "*.json"
-          "*.jsonc"
-          "*.toml"
-          "*.xml"
-          "*.yaml"
-        ];
-      }
+    lsp.fmtOnSaveExts = [
+      "css"
+      "html"
+      "json"
+      "jsonc"
+      "toml"
+      "xml"
+      "yaml"
+      "yml"
     ];
     extraPackages = [ pkgs.tombi ];
     plugins.none-ls = {
