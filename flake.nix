@@ -7,12 +7,17 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    topiary = {
+      url = "github:tweag/topiary";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       nixpkgs,
       nixvim,
+      topiary,
       ...
     }:
     let
@@ -38,6 +43,10 @@
         extraSpecialArgs = {
           inherit colors;
           inherit system;
+          topiary = {
+            lib = topiary.lib.${system};
+            inherit (topiary.packages.${system}) topiary-cli;
+          };
           tsGrmrPkgs = pkgs.vimPlugins.nvim-treesitter.builtGrammars;
         };
       };
