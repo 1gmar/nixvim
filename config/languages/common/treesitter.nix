@@ -11,7 +11,7 @@
   config = lib.mkIf config.treesitter.enable {
     plugins.treesitter = {
       enable = true;
-      folding = true;
+      folding.enable = true;
       grammarPackages = with tsGrmrPkgs; [
         css
         csv

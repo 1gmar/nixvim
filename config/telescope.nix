@@ -95,6 +95,10 @@
               "<S-Enter>" = "select_vertical";
               "<A-Enter>" = "select_horizontal";
             };
+            n = {
+              "<S-Enter>" = "select_vertical";
+              "<A-Enter>" = "select_horizontal";
+            };
           };
           prompt_prefix = "  ";
           selection_caret = " ";

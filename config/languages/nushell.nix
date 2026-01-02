@@ -16,8 +16,8 @@
       topiaryNushell = pkgs.fetchFromGitHub {
         owner = "blindFS";
         repo = "topiary-nushell";
-        rev = "e5c4db10057d2223e00a1f8957987b243350c903";
-        hash = "sha256-rV0BNLVg+cKJtAprKLPLpfwOvYjCSMjfCKzS/kSUFu0=";
+        rev = "71460ddb383a83286437ea951f946131ccca7e3f";
+        hash = "sha256-2DOqs/zIDIS/Fdy36txfncwpetrXxXY6RcQ0v+09cIc=";
       };
       topiaryConfig = fromNickelFile "${topiaryNushell}/languages.ncl";
       topiaryConfigWithHash = lib.updateManyAttrsByPath [
