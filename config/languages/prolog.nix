@@ -44,7 +44,7 @@
         inherit (config.prolog.lsp) enable;
         name = "prolog_ls";
         package = null;
-        settings = {
+        config = {
           inherit (config.prolog.lsp) cmd;
           filetypes = [ "prolog" ];
           rootMarkers = [
