@@ -8,31 +8,44 @@
 {
   options.prolog = {
     enable = lib.mkEnableOption "enable prolog module";
-    enableLsp = lib.mkEnableOption "enable prolog lsp";
+    lsp = lib.mkOption {
+      type =
+        with lib.types;
+        submodule {
+          options = {
+            enable = lib.mkEnableOption "enable prolog lsp";
+            cmd = lib.mkOption {
+              type = listOf str;
+              default = [
+                "swipl"
+                "-g"
+                "use_module('./packs/lsp_server/prolog/lsp_server.pl')."
+                "-g"
+                "lsp_server:main"
+                "-t"
+                "halt"
+                "--"
+                "stdio"
+              ];
+            };
+          };
+        };
+      default = { };
+    };
   };
   config = lib.mkIf config.prolog.enable {
-    extraPackages = lib.mkIf config.prolog.enableLsp [ pkgs.swi-prolog ];
+    extraPackages = lib.mkIf config.prolog.lsp.enable [ pkgs.swi-prolog ];
     filetype.extension = {
       pl = "prolog";
     };
-    lsp = lib.mkIf config.prolog.enableLsp {
+    lsp = lib.mkIf config.prolog.lsp.enable {
       fmtOnSaveExts = [ "pl" ];
       servers.prolog_ls = {
-        enable = config.prolog.enableLsp;
+        inherit (config.prolog.lsp) enable;
         name = "prolog_ls";
         package = null;
         settings = {
-          cmd = [
-            "swipl"
-            "-g"
-            "use_module('./packs/lsp_server/prolog/lsp_server.pl')."
-            "-g"
-            "lsp_server:main"
-            "-t"
-            "halt"
-            "--"
-            "stdio"
-          ];
+          inherit (config.prolog.lsp) cmd;
           filetypes = [ "prolog" ];
           rootMarkers = [
             "packs.pl"
