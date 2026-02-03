@@ -8,10 +8,10 @@
 {
   options.java = {
     enable = lib.mkEnableOption "enable java module";
-    javaPackage = lib.mkPackageOption pkgs "java package" {
+    package = lib.mkPackageOption pkgs "java package" {
       default = "temurin-bin-25";
     };
-    jdtlsDataPath = lib.mkOption {
+    jdtlsPath = lib.mkOption {
       type = lib.types.str;
     };
   };
@@ -21,7 +21,7 @@
       "lua/jdtls-utils.lua".source = ./jdtls-utils.lua;
     };
     extraPackages = [
-      config.java.javaPackage
+      config.java.package
     ];
     plugins = {
       jdtls = {
@@ -42,10 +42,16 @@
             [
               "java"
               "-Declipse.application=org.eclipse.jdt.ls.core.id1"
-              "-Dosgi.bundles.defaultStartLevel=4"
               "-Declipse.product=org.eclipse.jdt.ls.core.product"
-              "-Dlog.protocol=true"
+              "-Djdk.xml.maxGeneralEntitySizeLimit=0"
+              "-Djdk.xml.totalEntitySizeLimit=0"
               "-Dlog.level=ALL"
+              "-Dlog.protocol=true"
+              "-Dosgi.bundles.defaultStartLevel=4"
+              "-Dosgi.checkConfiguration=true"
+              "-Dosgi.configuration.cascaded=true"
+              "-Dosgi.sharedConfiguration.area.readOnly=true"
+              "-Dosgi.sharedConfiguration.area=${jdtls-path}/config_${platform}"
               "-Xmx1g"
               "--add-modules=ALL-SYSTEM"
               "--add-opens"
@@ -55,9 +61,9 @@
               "-jar"
               "${launcher}/jdtls_launcher.jar"
               "-configuration"
-              "${jdtls-path}/config_${platform}"
+              "${config.java.jdtlsPath}/config"
               "-data"
-              config.java.jdtlsDataPath
+              "${config.java.jdtlsPath}/data"
             ];
           init_options =
             let
