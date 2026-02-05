@@ -11,7 +11,7 @@
     package = lib.mkPackageOption pkgs "java package" {
       default = "temurin-bin-25";
     };
-    jdtlsPath = lib.mkOption {
+    project-name = lib.mkOption {
       type = lib.types.str;
     };
   };
@@ -61,9 +61,13 @@
               "-jar"
               "${launcher}/jdtls_launcher.jar"
               "-configuration"
-              "${config.java.jdtlsPath}/config"
+              {
+                __raw = "require('jdtls-utils').path_for('XDG_CONFIG_HOME', '${config.java.project-name}')";
+              }
               "-data"
-              "${config.java.jdtlsPath}/data"
+              {
+                __raw = "require('jdtls-utils').path_for('XDG_DATA_HOME', '${config.java.project-name}')";
+              }
             ];
           init_options =
             let
@@ -86,7 +90,7 @@
               '';
             in
             {
-              bundles.__raw = ''require('jdtls-utils').get_bundles("${bundles}")'';
+              bundles.__raw = "require('jdtls-utils').get_bundles('${bundles}')";
               extendedClientCapabilities = {
                 actionableRuntimeNotificationSupport = false;
                 advancedExtractRefactoringSupport = true;

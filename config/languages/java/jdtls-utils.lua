@@ -27,8 +27,15 @@ M.get_capabilities = function()
       }
     }
   }
-  return vim.tbl_deep_extend('keep', extra_capabilities,
+  return vim.tbl_deep_extend(
+    'keep',
+    extra_capabilities,
     require('cmp_nvim_lsp').default_capabilities())
+end
+
+M.path_for = function(home_var, project)
+  local home = os.getenv(home_var)
+  return home .. '/jdtls/' .. project
 end
 
 local function add_keymaps()
