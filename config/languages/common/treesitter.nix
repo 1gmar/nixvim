@@ -18,6 +18,7 @@
         gitcommit
         gitignore
         html
+        javascript
         json
         markdown
         markdown_inline
