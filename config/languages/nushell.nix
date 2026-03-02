@@ -38,7 +38,7 @@
       };
     in
     lib.mkIf config.nushell.enable {
-      env.TOPIARY_LANGUAGE_DIR = "${topiaryNushell}/languages";
+      env.TOPIARY_LANGUAGE_DIR = "${topiaryNushell}/queries";
       lsp.fmtOnSaveExts = [ "nu" ];
       lsp.servers.nushell = {
         enable = true;
