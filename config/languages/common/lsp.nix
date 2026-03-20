@@ -4,10 +4,10 @@
   ...
 }:
 {
-  options.lsp = {
-    enable = lib.mkEnableOption "enable lsp module";
-    fmtOnSaveExts = lib.mkOption {
-      type = with lib.types; listOf str;
+  options.lsp = with lib; {
+    enable = mkEnableOption "enable lsp module";
+    fmtOnSaveExts = mkOption {
+      type = with types; listOf str;
       default = [ ];
     };
   };
@@ -23,40 +23,10 @@
       inlayHints.enable = false;
       keymaps = [
         {
-          key = "<A-p>";
-          lspBufAction = "signature_help";
-          mode = "n";
-          options.desc = "show type signature";
-        }
-        {
-          key = "<leader>gd";
-          lspBufAction = "definition";
-          mode = "n";
-          options.desc = "[g]o to [d]efinition";
-        }
-        {
           key = "<leader>gD";
           lspBufAction = "declaration";
           mode = "n";
           options.desc = "[g]o to [D]eclaration";
-        }
-        {
-          key = "<leader>gR";
-          lspBufAction = "references";
-          mode = "n";
-          options.desc = "[g]o to [R]eferences";
-        }
-        {
-          key = "<leader>gi";
-          lspBufAction = "implementation";
-          mode = "n";
-          options.desc = "[g]o to [i]mplementation";
-        }
-        {
-          key = "<leader>gt";
-          lspBufAction = "type_definition";
-          mode = "n";
-          options.desc = "[g]o to [t]ype definition";
         }
         {
           key = "<leader>gr";
@@ -78,15 +48,62 @@
         }
       ];
     };
-    plugins.lsp-signature = {
-      enable = true;
-      settings = {
-        extra_trigger_chars = [
-          "("
-          ","
-        ];
-        hint_prefix = "󱄑 ";
-        toggle_key = "<A-p>";
+    plugins = {
+      lsp-signature = {
+        enable = true;
+        settings = {
+          doc_lines = 0;
+          hint_enable = false;
+          toggle_key = "<A-p>";
+        };
+      };
+      telescope = lib.mkIf config.telescope.enable {
+        keymaps = {
+          "<leader>gd" = {
+            action = "lsp_definitions";
+            mode = "n";
+            options.desc = "[g]o to [d]efinition";
+          };
+          "<leader>gF" = {
+            action = "lsp_document_symbols symbols=function";
+            mode = "n";
+            options.desc = "[g]o to [F]unctions";
+          };
+          "<leader>gi" = {
+            action = "lsp_implementations";
+            mode = "n";
+            options.desc = "[g]o to [i]mplementation";
+          };
+          "<leader>gR" = {
+            action = "lsp_references";
+            mode = "n";
+            options.desc = "[g]o to [R]eferences";
+          };
+          "<leader>gt" = {
+            action = "lsp_type_definitions";
+            mode = "n";
+            options.desc = "[g]o to [t]ype definition";
+          };
+        };
+        settings.pickers =
+          let
+            cursor = {
+              previewer = false;
+              theme = "cursor";
+            };
+          in
+          lib.genAttrs [
+            "lsp_definitions"
+            "lsp_implementations"
+            "lsp_references"
+            "lsp_type_definitions"
+          ] (_: cursor)
+          // {
+            lsp_document_symbols = {
+              previewer = false;
+              theme = "dropdown";
+            };
+          };
       };
     };
   };

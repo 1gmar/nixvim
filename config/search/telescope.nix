@@ -22,7 +22,7 @@
             override_generic_sorter = true;
           };
         };
-        live-grep-args.enable = true;
+        undo.enable = true;
         ui-select = {
           enable = true;
           settings = {
@@ -31,82 +31,75 @@
         };
       };
       keymaps = {
+        "<leader>ch" = {
+          action = "command_history";
+          mode = "n";
+          options.desc = "[c]ommand [h]istory";
+        };
+        "<leader>cl" = {
+          action = "commands";
+          mode = "n";
+          options.desc = "[c]ommand [l]ist";
+        };
         "<leader>ff" = {
           action = "find_files";
           mode = "n";
-          options = {
-            desc = "[f]ind [f]iles";
-          };
+          options.desc = "[f]ind [f]iles";
         };
         "<leader>fg" = {
           action = "live_grep";
           mode = "n";
-          options = {
-            desc = "[f]ind using [g]rep";
-          };
+          options.desc = "[f]ind using [g]rep";
         };
         "<leader>fb" = {
           action = "buffers";
           mode = "n";
-          options = {
-            desc = "[f]ind current [b]uffers";
-          };
+          options.desc = "[f]ind current [b]uffers";
         };
         "<leader>fh" = {
           action = "help_tags";
           mode = "n";
-          options = {
-            desc = "[f]ind [h]elp tags";
-          };
+          options.desc = "[f]ind [h]elp tags";
         };
         "<leader>fd" = {
           action = "diagnostics";
           mode = "n";
-          options = {
-            desc = "[f]ind [d]iagnostics";
-          };
+          options.desc = "[f]ind [d]iagnostics";
         };
         "<leader>fr" = {
           action = "oldfiles cwd_only=true";
           mode = "n";
-          options = {
-            desc = "[f]ind [r]ecent files";
-          };
-        };
-        "<leader>vs" = {
-          action = "git_status";
-          mode = "n";
-          options = {
-            desc = "[v]ersion control [s]tatus";
-          };
+          options.desc = "[f]ind [r]ecent files";
         };
         "<leader>fk" = {
           action = "keymaps";
           mode = "n";
-          options = {
-            desc = "[f]ind [k]eymaps";
-          };
+          options.desc = "[f]ind [k]eymaps";
+        };
+        "<leader>fs" = {
+          action = "treesitter";
+          mode = "n";
+          options.desc = "[f]ind treesitter [s]ymbols";
+        };
+        "<leader>sh" = {
+          action = "search_history";
+          mode = "n";
+          options.desc = "[s]earch [h]istory";
         };
       };
       settings = {
         defaults = {
-          mappings = {
-            i = {
-              "<S-Enter>" = "select_vertical";
-              "<A-Enter>" = "select_horizontal";
-            };
-            n = {
-              "<S-Enter>" = "select_vertical";
-              "<A-Enter>" = "select_horizontal";
-            };
-          };
           prompt_prefix = "  ";
           selection_caret = " ";
+          dynamic_preview_title = true;
         };
         pickers = {
           buffers = {
             initial_mode = "normal";
             previewer = false;
+            theme = "dropdown";
+          };
+          command_history = {
             theme = "dropdown";
           };
           diagnostics = {
@@ -118,10 +111,6 @@
             previewer = false;
             theme = "dropdown";
           };
-          git_status = {
-            initial_mode = "normal";
-            theme = "ivy";
-          };
           oldfiles = {
             previewer = false;
             theme = "dropdown";
@@ -129,6 +118,12 @@
           planets = {
             show_moon = true;
             show_pluto = true;
+            theme = "ivy";
+          };
+          search_history = {
+            theme = "dropdown";
+          };
+          treesitter = {
             theme = "ivy";
           };
         };

@@ -13,28 +13,35 @@
       loaded_netrwPlugin = 1;
     };
     opts = {
-      background = "light";
-      breakindent = true;
-      colorcolumn = "100";
-      cursorline = true;
-      expandtab = true;
+      # general
       fileencoding = "utf-8";
       foldlevel = 99;
-      ignorecase = true;
-      linebreak = true;
+
+      # indentation
+      breakindent = true;
+      expandtab = true;
+      smartindent = true;
+      shiftwidth = 2;
+      softtabstop = 2;
+      tabstop = 2;
+
+      # splits
+      splitbelow = true;
+      splitright = true;
+
+      # ui
+      background = "light";
+      colorcolumn = "100";
+      cursorline = true;
       number = true;
       numberwidth = 2;
       relativenumber = true;
-      scrolloff = 8;
-      shiftwidth = 2;
       showmode = false;
       signcolumn = "yes";
-      smartcase = true;
-      smartindent = true;
-      softtabstop = 2;
-      splitbelow = true;
-      splitright = true;
-      tabstop = 2;
+
+      # wrapping
+      linebreak = true;
+      scrolloff = 8;
       wrap = true;
     };
   };
