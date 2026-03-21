@@ -1,13 +1,9 @@
+{ config, lib, ... }:
 {
-  config,
-  lib,
-  ...
-}:
-{
-  options.indent = {
-    enable = lib.mkEnableOption "enable indent module";
+  options.scope = {
+    enable = lib.mkEnableOption "enable scope module";
   };
-  config = lib.mkIf config.indent.enable {
+  config = lib.mkIf config.scope.enable {
     plugins.mini-indentscope = {
       enable = true;
       settings.draw = {

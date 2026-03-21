@@ -1,15 +1,13 @@
+{ config, lib, ... }:
 {
-  config,
-  lib,
-  ...
-}: {
   imports = [
     ./ansi-coloring.nix
     ./colorscheme.nix
     ./dashboard.nix
     ./delimiters.nix
     ./icons.nix
-    ./indent.nix
+    ./options.nix
+    ./scope.nix
     ./mini-notify.nix
     ./statusline.nix
   ];
@@ -22,8 +20,9 @@
     dashboard.enable = lib.mkDefault true;
     delimiters.enable = lib.mkDefault true;
     icons.enable = lib.mkDefault true;
-    indent.enable = lib.mkDefault true;
     mini-notify.enable = lib.mkDefault true;
+    scope.enable = lib.mkDefault true;
     statusline.enable = lib.mkDefault true;
+    ui-options.enable = lib.mkDefault true;
   };
 }

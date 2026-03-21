@@ -51,7 +51,7 @@ M.git_blame_toggle = function(ansi_coloring_enabled)
       vim.cmd('vert lefta Git blame --date=human --show-name ' .. opt_color_arg .. ' -- %')
       vim.cmd('vert res 50')
       if ansi_coloring_enabled then
-        vim.cmd('AnsiColorize')
+        vim.g.baleia.once(vim.api.nvim_get_current_buf())
       end
     end
   end

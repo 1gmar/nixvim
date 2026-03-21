@@ -1,12 +1,10 @@
+{ config, lib, ... }:
 {
-  config,
-  lib,
-  ...
-}: {
   imports = [
     ./autopairs.nix
     ./comment.nix
     ./find-and-replace.nix
+    ./options.nix
     ./selection.nix
     ./surround.nix
   ];
@@ -17,6 +15,7 @@
     autopairs.enable = lib.mkDefault true;
     comment.enable = lib.mkDefault true;
     find-and-replace.enable = lib.mkDefault true;
+    indent-options.enable = lib.mkDefault true;
     selection.enable = lib.mkDefault true;
     surround.enable = lib.mkDefault true;
   };
