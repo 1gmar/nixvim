@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 {
   options.autopairs = {
     enable = lib.mkEnableOption "enable autopairs module";

@@ -5,6 +5,14 @@
   tsGrmrPkgs,
   ...
 }:
+let
+  lsp_server = pkgs.fetchFromGitHub {
+    owner = "jamesnvc";
+    repo = "lsp_server";
+    rev = "4e0c5f3cb4dc59a4171f6649651a7ef8dd7533df";
+    hash = "sha256-EYCFdIZ5MCX34TWW9qWZ4Ocb/U8WUhIKqYAcY7wSKFk=";
+  };
+in
 {
   options.prolog = {
     enable = lib.mkEnableOption "enable prolog module";
@@ -19,7 +27,7 @@
               default = [
                 "swipl"
                 "-g"
-                "use_module('./packs/lsp_server/prolog/lsp_server.pl')."
+                "use_module('${lsp_server}/prolog/lsp_server.pl')."
                 "-g"
                 "lsp_server:main"
                 "-t"

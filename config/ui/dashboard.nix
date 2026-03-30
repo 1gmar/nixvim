@@ -1,8 +1,5 @@
+{ config, lib, ... }:
 {
-  config,
-  lib,
-  ...
-}: {
   options.dashboard = {
     enable = lib.mkEnableOption "enable dashboard module";
   };

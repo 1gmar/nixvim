@@ -1,8 +1,5 @@
+{ config, lib, ... }:
 {
-  config,
-  lib,
-  ...
-}: {
   options.find-and-replace = {
     enable = lib.mkEnableOption "enable find-and-replace module";
   };
@@ -11,17 +8,17 @@
       {
         action = "<cmd>GrugFar<cr>";
         key = "<leader>/";
-        mode = ["n"];
+        mode = [ "n" ];
       }
       {
         action.__raw = "require('grug-far').with_visual_selection";
         key = "<leader>/";
-        mode = ["x"];
+        mode = [ "x" ];
       }
       {
         action.__raw = "function() require('grug-far').open({visualSelectionUsage = 'operate-within-range'}) end";
         key = "<leader>v/";
-        mode = ["x"];
+        mode = [ "x" ];
       }
     ];
     plugins.grug-far.enable = true;

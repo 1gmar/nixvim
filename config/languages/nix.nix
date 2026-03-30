@@ -18,21 +18,23 @@
         pattern = [ "nix" ];
       }
     ];
-    lsp.fmtOnSaveExts = [ "nix" ];
     extraPackages = [ pkgs.nixfmt ];
-    lsp.servers.nixd = {
-      enable = true;
-      config = {
-        cmd = [ "nixd" ];
-        filetypes = [ "nix" ];
-        root_markers = [
-          ".git"
-          "flake.nix"
-        ];
-        settings.nixd = {
-          formatting.command = lib.mkDefault [ "nixfmt" ];
-          nixpkgs.expr = lib.mkDefault "import <nixpkgs> { }";
-          options.nixvim.expr = ''(builtins.getFlake "github:1gmar/nixvim").packages.${system}.default.options'';
+    lsp = {
+      fmtOnSaveExts = [ "nix" ];
+      servers.nixd = {
+        enable = true;
+        config = {
+          cmd = [ "nixd" ];
+          filetypes = [ "nix" ];
+          root_markers = [
+            ".git"
+            "flake.nix"
+          ];
+          settings.nixd = {
+            formatting.command = lib.mkDefault [ "nixfmt" ];
+            nixpkgs.expr = lib.mkDefault "import <nixpkgs> { }";
+            options.nixvim.expr = ''(builtins.getFlake "github:1gmar/nixvim").packages.${system}.default.options'';
+          };
         };
       };
     };

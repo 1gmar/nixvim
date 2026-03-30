@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   options.completion = {
     enable = lib.mkEnableOption "enable completion module";
   };
@@ -14,7 +15,11 @@
         autoEnableSources = false;
         settings = {
           formatting = {
-            fields = ["abbr" "kind" "menu"];
+            fields = [
+              "abbr"
+              "kind"
+              "menu"
+            ];
             expandable_indicator = true;
           };
           mapping = {

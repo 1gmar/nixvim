@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 {
   options.statusline = {
     enable = lib.mkEnableOption "enable statusline module";

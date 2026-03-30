@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 {
   options.icons = {
     enable = lib.mkEnableOption "enable icons module";

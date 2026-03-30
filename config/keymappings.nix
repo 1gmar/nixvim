@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 {
   options.keymappings = {
     enable = lib.mkEnableOption "enable keymappings module";

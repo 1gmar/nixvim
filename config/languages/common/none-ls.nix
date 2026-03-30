@@ -22,19 +22,21 @@
     extraPackages = [ pkgs.tombi ];
     plugins.none-ls = {
       enable = true;
-      luaConfig.post = ''
-        local null_ls = require('null-ls')
-        null_ls.register({
-          name = 'tombi',
-          method = null_ls.methods.FORMATTING,
-          filetypes = { 'toml' },
-          generator = null_ls.formatter({
-            args = { 'format', '--offline', '-' },
-            command = 'tombi',
-            to_stdin = true,
-          }),
-        })
-      '';
+      luaConfig = {
+        pre = "local null_ls = require('null-ls')";
+        post = ''
+          null_ls.register({
+            name = 'tombi',
+            method = null_ls.methods.FORMATTING,
+            filetypes = { 'toml' },
+            generator = null_ls.formatter({
+              args = { 'format', '--offline', '-' },
+              command = 'tombi',
+              to_stdin = true,
+            }),
+          })
+        '';
+      };
       sources.formatting = {
         prettier = {
           enable = true;

@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 {
   options.comment = {
     enable = lib.mkEnableOption "enable comment module";

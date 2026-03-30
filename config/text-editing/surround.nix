@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 {
   options.surround = {
     enable = lib.mkEnableOption "enable surround module";

@@ -87,7 +87,6 @@
       plugins = {
         none-ls = {
           luaConfig.post = ''
-            local null_ls = require('null-ls')
             null_ls.register({
               name = 'topiary-nushell',
               method = null_ls.methods.FORMATTING,

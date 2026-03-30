@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 {
   options.search-options = {
     enable = lib.mkEnableOption "enable search options module";

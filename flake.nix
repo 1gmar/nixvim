@@ -58,6 +58,12 @@
         inherit nvim;
         name = "Neovim";
       };
+      devShells.${system}.default = pkgs.mkShellNoCC {
+        packages = [
+          (nvim.extend { lua.enable = true; })
+        ];
+      };
+      formatter.${system} = pkgs.nixfmt;
       inherit (nixvim) lib;
       packages.${system}.default = nvim;
     };

@@ -1,8 +1,5 @@
+{ config, lib, ... }:
 {
-  config,
-  lib,
-  ...
-}: {
   options.ansi-coloring = {
     enable = lib.mkEnableOption "enable ansi-coloring module";
   };

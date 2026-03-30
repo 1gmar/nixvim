@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 {
   options.neo-tree = {
     enable = lib.mkEnableOption "enable neo-tree module";

@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 {
   options.lsp = with lib; {
     enable = mkEnableOption "enable lsp module";

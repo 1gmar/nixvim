@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options.diagnostic-config = {
     enable = lib.mkEnableOption "enable diagnostic-config module";
   };

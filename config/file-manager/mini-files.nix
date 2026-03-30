@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 {
   options.mini-files = {
     enable = lib.mkEnableOption "enable mini-files module";
