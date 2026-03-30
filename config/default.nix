@@ -17,7 +17,7 @@
   completion.enable = lib.mkDefault true;
   diagnostic-config.enable = lib.mkDefault true;
   file-manager.enable = lib.mkDefault true;
-  git.enable = lib.mkDefault true;
+  git.enable = lib.mkDefault false;
   keymappings.enable = lib.mkDefault true;
   languages.enable = lib.mkDefault true;
   search.enable = lib.mkDefault true;

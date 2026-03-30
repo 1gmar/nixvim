@@ -60,7 +60,10 @@
       };
       devShells.${system}.default = pkgs.mkShellNoCC {
         packages = [
-          (nvim.extend { lua.enable = true; })
+          (nvim.extend {
+            git.enable = true;
+            lua.enable = true;
+          })
         ];
       };
       formatter.${system} = pkgs.nixfmt;
