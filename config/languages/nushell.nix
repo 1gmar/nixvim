@@ -32,8 +32,8 @@
       topiaryNushell = pkgs.fetchFromGitHub {
         owner = "blindFS";
         repo = "topiary-nushell";
-        rev = "98690f7ce6eadc2dd715eb57519c6ec0d408241e";
-        hash = "sha256-iJ6KIqdnae6hSup6d11gv6KCsOzqhD8ZMdQRR3PSCqU=";
+        rev = "6e2f9b339a664a46e4015fa5d79e537807fefa39";
+        hash = "sha256-fTfxSnVI7TY6vQhD+GimPBRJ4K0SyyVtoLcLGH3xIPc=";
       };
       topiaryConfig = fromNickelFile "${topiaryNushell}/languages.ncl";
       topiaryConfigWithHash = lib.updateManyAttrsByPath [
@@ -45,7 +45,7 @@
             "source"
             "git"
           ];
-          update = old: old // { nixHash = "sha256-0ebKHKexu1TROwfxokwwpPhCO+Nn7HmmX40jRu19xNo="; };
+          update = old: old // { nixHash = "sha256-G+XuQSqvJ9xRNq4fYiyHK9+AmCNofayPOC6JrFXpcjU="; };
         }
       ] topiaryConfig;
       topiaryWrapper = wrapWithConfig {
