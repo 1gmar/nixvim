@@ -45,7 +45,7 @@
             "source"
             "git"
           ];
-          update = old: old // { nixHash = "sha256-G+XuQSqvJ9xRNq4fYiyHK9+AmCNofayPOC6JrFXpcjU="; };
+          update = old: old // { nixHash = "sha256-0tQOALi8079pqy12mGG3eqsqv2FsqVvRnetp4xXKH9s="; };
         }
       ] topiaryConfig;
       topiaryWrapper = wrapWithConfig {
