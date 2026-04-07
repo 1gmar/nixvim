@@ -14,3 +14,5 @@ end
 if res.stderr then
   io.stderr:write(res.stderr)
 end
+
+os.exit(res.code)
