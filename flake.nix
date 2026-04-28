@@ -23,7 +23,7 @@
       ...
     }:
     let
-      colors = color-themes.themes.solarized.light;
+      colors = color-themes.solarized.light;
       nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
         module = ./config;
         inherit pkgs;
