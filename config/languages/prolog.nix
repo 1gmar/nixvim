@@ -9,8 +9,8 @@ let
   lsp_server = pkgs.fetchFromGitHub {
     owner = "jamesnvc";
     repo = "lsp_server";
-    rev = "e1d3bf1719f36244831199db83cf1eed97dd574a";
-    hash = "sha256-OeSJtub8YSnpkNZy7533QOodMivld8XeEV5kul0dI8w=";
+    rev = "d43225ba16085b50c594e200e371fb2e282b24db";
+    hash = "sha256-OBreiMN+fcCnD5ffzVF2gejFwQaW2hXAhxsbpBHYucA=";
   };
 in
 {

@@ -2,9 +2,9 @@
   description = "Nixvim config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
     nixvim = {
-      url = "github:nix-community/nixvim?ref=nixos-25.11";
+      url = "github:nix-community/nixvim?ref=nixos-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     topiary = {
