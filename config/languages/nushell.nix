@@ -72,6 +72,7 @@
               end
             '';
           };
+          packageFallback = true;
         };
       };
       opts = lib.mkIf config.nushell.vimshell.enable {
