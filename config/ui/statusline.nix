@@ -13,7 +13,7 @@
             "mini-files"
             "neo-tree"
           ];
-          theme = "solarized_light";
+          theme = lib.mkDefault "solarized_light";
         };
         sections = {
           lualine_b = [ "branch" ];

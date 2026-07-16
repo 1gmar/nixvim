@@ -5,7 +5,7 @@
   };
   config = lib.mkIf config.ui-options.enable {
     opts = {
-      background = "light";
+      background = lib.mkDefault "light";
       colorcolumn = "100";
       cursorline = true;
       linebreak = true;

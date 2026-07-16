@@ -1,5 +1,6 @@
 {
   colors,
+  colors-dark,
   config,
   lib,
   ...
@@ -32,7 +33,7 @@
       virtual_lines = false;
       virtual_text = false;
     };
-    highlightOverride = with colors; {
+    highlightOverride = with (if config.opts.background == "light" then colors else colors-dark); {
       DiagnosticErrorLine = {
         bg = background;
         fg = orange;
