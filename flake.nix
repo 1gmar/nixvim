@@ -60,6 +60,13 @@
       };
       formatter.${system} = pkgs.nixfmt;
       inherit (nixvim) lib;
-      packages.${system}.default = nvim;
+      packages.${system} = {
+        default = nvim;
+        tty-vim = nvim.extend {
+          opts.background = "dark";
+          statusline.enable = false;
+          globals.solarized_t_Co = 16;
+        };
+      };
     };
 }
