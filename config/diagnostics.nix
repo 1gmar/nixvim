@@ -36,12 +36,16 @@
     highlightOverride = with (if config.opts.background == "light" then colors else colors-dark); {
       DiagnosticErrorLine = {
         bg = background;
+        ctermbg.__raw = "8";
         fg = orange;
+        ctermfg.__raw = "9";
         reverse = true;
       };
       DiagnosticWarnLine = {
         bg = background;
+        ctermbg.__raw = "8";
         fg = yellow;
+        ctermfg.__raw = "3";
         reverse = true;
       };
     };

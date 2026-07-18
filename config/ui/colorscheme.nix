@@ -9,7 +9,7 @@
     enable = lib.mkEnableOption "enable color-scheme module";
   };
   config = lib.mkIf config.color-scheme.enable {
-    colorscheme = lib.mkDefault "solarized-flat";
-    extraPlugins = with pkgs.vimPlugins; [ nvim-solarized-lua ];
+    colorscheme = lib.mkDefault "solarized8";
+    extraPlugins = with pkgs.vimPlugins; [ vim-solarized8 ];
   };
 }

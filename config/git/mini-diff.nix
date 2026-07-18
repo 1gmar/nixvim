@@ -12,12 +12,15 @@
     highlightOverride = with colors; {
       MiniDiffSignAdd = {
         fg = green;
+        ctermfg.__raw = "2";
       };
       MiniDiffSignChange = {
         fg = yellow;
+        ctermfg.__raw = "3";
       };
       MiniDiffSignDelete = {
         fg = magenta;
+        ctermfg.__raw = "5";
       };
     };
     keymaps = [

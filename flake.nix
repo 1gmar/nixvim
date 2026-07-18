@@ -39,7 +39,10 @@
           tsGrmrPkgs = pkgs.vimPlugins.nvim-treesitter.builtGrammars;
         };
       };
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs {
+        config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [ "vim-solarized8" ];
+        inherit system;
+      };
       system = "x86_64-linux";
     in
     {
