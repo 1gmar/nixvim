@@ -18,11 +18,11 @@
     },
     "color-themes": {
       "locked": {
-        "lastModified": 1777383516,
-        "narHash": "sha256-62mybJz1jZfGnOaeNqckVkN0D9Ps4bGMldVa1OdUKI8=",
+        "lastModified": 1789918758,
+        "narHash": "sha256-GHMRS5IFJkEHDNv+5blEEBsHJTHhL8a3SlNPP/v+qRw=",
         "owner": "1gmar",
         "repo": "color-themes",
-        "rev": "4ef74ce2b99022def39efa51a9db81bf60545130",
+        "rev": "fa89d5c40a734c03459f4dabd120770d92cc7d55",
         "type": "github"
       },
       "original": {

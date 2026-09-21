@@ -1,4 +1,5 @@
 {
+  colors,
   config,
   lib,
   pkgs,
@@ -19,5 +20,31 @@
         };
       })
     ];
+    highlightOverride = with colors; {
+      FloatBorder = {
+        bg = gui.background;
+        ctermbg.__raw = toString cterm.background;
+        fg = gui.highlight;
+        ctermfg.__raw = toString cterm.highlight;
+      };
+      NormalFloat = {
+        bg = gui.background;
+        ctermbg.__raw = toString cterm.background;
+        fg = gui.highlight;
+        ctermfg.__raw = toString cterm.highlight;
+      };
+      VertSplit = {
+        bg = gui.background;
+        ctermbg.__raw = toString cterm.background;
+        fg = gui.highlight;
+        ctermfg.__raw = toString cterm.highlight;
+      };
+      WinSeparator = {
+        bg = gui.background;
+        ctermbg.__raw = toString cterm.background;
+        fg = gui.highlight;
+        ctermfg.__raw = toString cterm.highlight;
+      };
+    };
   };
 }

@@ -11,16 +11,16 @@
   config = lib.mkIf config.mini-diff.enable {
     highlightOverride = with colors; {
       MiniDiffSignAdd = {
-        fg = green;
-        ctermfg.__raw = "2";
+        fg = gui.green;
+        ctermfg.__raw = toString cterm.green;
       };
       MiniDiffSignChange = {
-        fg = yellow;
-        ctermfg.__raw = "3";
+        fg = gui.yellow;
+        ctermfg.__raw = toString cterm.yellow;
       };
       MiniDiffSignDelete = {
-        fg = magenta;
-        ctermfg.__raw = "5";
+        fg = gui.magenta;
+        ctermfg.__raw = toString cterm.magenta;
       };
     };
     keymaps = [

@@ -23,14 +23,12 @@
       ...
     }:
     let
-      colors = color-themes.solarized.light;
-      colors-dark = color-themes.solarized.dark;
+      theme = color-themes.solarized;
       nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
         module = ./config;
         inherit pkgs;
         extraSpecialArgs = {
-          inherit colors;
-          inherit colors-dark;
+          inherit theme;
           inherit system;
           topiary = {
             lib = topiary.lib.${system};
@@ -63,6 +61,7 @@
       packages.${system} = {
         default = nvim;
         tty-vim = nvim.extend {
+          _module.args.colors = theme.dark;
           opts.background = "dark";
           statusline.enable = false;
           globals.solarized_t_Co = 16;

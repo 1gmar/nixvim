@@ -1,6 +1,5 @@
 {
   colors,
-  colors-dark,
   config,
   lib,
   ...
@@ -33,19 +32,19 @@
       virtual_lines = false;
       virtual_text = false;
     };
-    highlightOverride = with (if config.opts.background == "light" then colors else colors-dark); {
+    highlightOverride = with colors; {
       DiagnosticErrorLine = {
-        bg = background;
-        ctermbg.__raw = "8";
-        fg = orange;
-        ctermfg.__raw = "9";
+        bg = gui.background;
+        ctermbg.__raw = toString cterm.background;
+        fg = gui.orange;
+        ctermfg.__raw = toString cterm.orange;
         reverse = true;
       };
       DiagnosticWarnLine = {
-        bg = background;
-        ctermbg.__raw = "8";
-        fg = yellow;
-        ctermfg.__raw = "3";
+        bg = gui.background;
+        ctermbg.__raw = toString cterm.background;
+        fg = gui.yellow;
+        ctermfg.__raw = toString cterm.yellow;
         reverse = true;
       };
     };

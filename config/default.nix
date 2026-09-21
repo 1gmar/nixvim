@@ -1,4 +1,8 @@
-{ lib, ... }:
+{
+  lib,
+  theme,
+  ...
+}:
 {
   imports = [
     ./file-manager
@@ -14,6 +18,7 @@
     ./options.nix
   ];
 
+  _module.args.colors = lib.mkDefault theme.light;
   completion.enable = lib.mkDefault true;
   diagnostic-config.enable = lib.mkDefault true;
   file-manager.enable = lib.mkDefault true;
