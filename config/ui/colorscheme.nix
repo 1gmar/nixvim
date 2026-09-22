@@ -21,6 +21,12 @@
       })
     ];
     highlightOverride = with colors; {
+      Cursor = {
+        bg = gui.primaryContent;
+        ctermbg.__raw = toString cterm.primaryContent;
+        fg = gui.background;
+        ctermfg.__raw = toString cterm.background;
+      };
       FloatBorder = {
         bg = gui.background;
         ctermbg.__raw = toString cterm.background;

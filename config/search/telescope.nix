@@ -30,6 +30,7 @@
           };
         };
       };
+      highlightTheme = "Solarized (light)";
       keymaps = {
         "<leader>ch" = {
           action = "command_history";
