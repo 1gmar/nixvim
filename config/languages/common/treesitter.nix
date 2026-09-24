@@ -9,6 +9,36 @@
     enable = lib.mkEnableOption "enable treesitter module";
   };
   config = lib.mkIf config.treesitter.enable {
+    keymaps = [
+      {
+        action.__raw = ''
+          function()
+            vim.cmd.normal('v')
+            require 'vim.treesitter._select'.select_parent(vim.v.count1)
+          end
+        '';
+        key = "<C-CR>";
+        mode = "n";
+      }
+      {
+        action.__raw = ''
+          function()
+            require 'vim.treesitter._select'.select_parent(vim.v.count1)
+          end
+        '';
+        key = "<C-k>";
+        mode = "v";
+      }
+      {
+        action.__raw = ''
+          function()
+            require 'vim.treesitter._select'.select_child(vim.v.count1)
+          end
+        '';
+        key = "<C-j>";
+        mode = "v";
+      }
+    ];
     plugins.treesitter = {
       enable = true;
       folding.enable = true;
@@ -32,15 +62,6 @@
       settings = {
         highlight.enable = true;
         indent.enable = true;
-        incremental_selection = {
-          enable = true;
-          keymaps = {
-            init_selection = "<C-CR>";
-            node_decremental = "<C-j>";
-            node_incremental = "<C-k>";
-            scope_incremental = "<C-h>";
-          };
-        };
       };
     };
   };
