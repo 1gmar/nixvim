@@ -87,6 +87,11 @@
           mode = "n";
           options.desc = "[s]earch [h]istory";
         };
+        "<leader>ss" = {
+          action = "spell_suggest";
+          mode = "n";
+          options.desc = "[s]pell [s]uggest";
+        };
       };
       settings = {
         defaults = {
