@@ -2,18 +2,22 @@
 {
   options.statusline = {
     enable = lib.mkEnableOption "enable statusline module";
+    settings = lib.mkOption {
+      type = with lib.types; attrsOf anything;
+      default = { };
+    };
   };
   config = lib.mkIf config.statusline.enable {
     plugins.lualine = {
       enable = true;
-      settings = {
+      settings = lib.recursiveUpdate {
         extensions = [ "man" ];
         options = {
           ignore_focus = [
             "mini-files"
             "neo-tree"
           ];
-          theme = lib.mkDefault "solarized_light";
+          theme = "solarized_light";
         };
         sections = {
           lualine_b = [ "branch" ];
@@ -36,7 +40,7 @@
             "%L"
           ];
         };
-      };
+      } config.statusline.settings;
     };
   };
 }

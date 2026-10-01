@@ -12,7 +12,7 @@
     highlightOverride = with colors; {
       NeoTreeFloatTitle = {
         bg = gui.background;
-        ctermbg.__raw = toString cterm.background;
+        ctermbg.__raw = toString cterm.backHighlight;
         fg = gui.orange;
         ctermfg.__raw = toString cterm.orange;
       };

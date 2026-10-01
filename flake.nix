@@ -42,30 +42,45 @@
         inherit system;
       };
       system = "x86_64-linux";
+      darkNvim = nvim.extend ./config/ui/dark-cterm-lualine.nix;
+      mkNixvimWith =
+        module:
+        let
+          finalNvim = nvim.extend module;
+          finalTTYNvim = darkNvim.extend module;
+        in
+        pkgs.writeShellApplication {
+          name = "nvim";
+          text = ''
+            if [[ "$TERM" == "linux" ]]; then
+              exec ${pkgs.lib.getExe finalTTYNvim} "$@"
+            else
+              exec ${pkgs.lib.getExe finalNvim} "$@"
+            fi
+          '';
+        };
     in
     {
-      checks.${system}.default = nixvim.lib.${system}.check.mkTestDerivationFromNvim {
-        inherit nvim;
-        name = "Neovim";
+      checks.${system} = {
+        default = nixvim.lib.${system}.check.mkTestDerivationFromNvim {
+          inherit nvim;
+          name = "Nvim";
+        };
+        tty-vim = nixvim.lib.${system}.check.mkTestDerivationFromNvim {
+          nvim = darkNvim;
+          name = "Dark Nvim";
+        };
       };
       devShells.${system}.default = pkgs.mkShellNoCC {
         packages = [
-          (nvim.extend {
+          (mkNixvimWith {
             git.enable = true;
             lua.enable = true;
           })
         ];
       };
       formatter.${system} = pkgs.nixfmt;
-      inherit (nixvim) lib;
-      packages.${system} = {
-        default = nvim;
-        tty-vim = nvim.extend {
-          _module.args.colors = theme.dark;
-          opts.background = "dark";
-          statusline.enable = false;
-          globals.solarized_t_Co = 16;
-        };
-      };
+      lib.mkNixvimWith = mkNixvimWith;
+      packages.${system}.default = mkNixvimWith { };
     };
 }

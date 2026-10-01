@@ -23,31 +23,31 @@
     highlightOverride = with colors; {
       Cursor = {
         bg = gui.primaryContent;
-        ctermbg.__raw = toString cterm.primaryContent;
+        ctermbg.__raw = toString cterm.white or cterm.primaryContent;
         fg = gui.background;
         ctermfg.__raw = toString cterm.background;
       };
       FloatBorder = {
         bg = gui.background;
-        ctermbg.__raw = toString cterm.background;
+        ctermbg.__raw = toString cterm.backHighlight;
         fg = gui.highlight;
         ctermfg.__raw = toString cterm.highlight;
       };
       NormalFloat = {
         bg = gui.background;
-        ctermbg.__raw = toString cterm.background;
+        ctermbg.__raw = toString cterm.backHighlight;
         fg = gui.highlight;
         ctermfg.__raw = toString cterm.highlight;
       };
       VertSplit = {
         bg = gui.background;
-        ctermbg.__raw = toString cterm.background;
+        ctermbg.__raw = toString cterm.backHighlight;
         fg = gui.highlight;
         ctermfg.__raw = toString cterm.highlight;
       };
       WinSeparator = {
         bg = gui.background;
-        ctermbg.__raw = toString cterm.background;
+        ctermbg.__raw = toString cterm.backHighlight;
         fg = gui.highlight;
         ctermfg.__raw = toString cterm.highlight;
       };

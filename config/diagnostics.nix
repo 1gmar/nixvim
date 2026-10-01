@@ -34,18 +34,16 @@
     };
     highlightOverride = with colors; {
       DiagnosticErrorLine = {
-        bg = gui.background;
-        ctermbg.__raw = toString cterm.background;
-        fg = gui.orange;
-        ctermfg.__raw = toString cterm.orange;
-        reverse = true;
+        bg = gui.orange;
+        fg = gui.background;
+        ctermbg.__raw = toString cterm.orange;
+        ctermfg.__raw = toString cterm.backHighlight;
       };
       DiagnosticWarnLine = {
-        bg = gui.background;
-        ctermbg.__raw = toString cterm.background;
-        fg = gui.yellow;
-        ctermfg.__raw = toString cterm.yellow;
-        reverse = true;
+        bg = gui.yellow;
+        fg = gui.background;
+        ctermbg.__raw = toString cterm.yellow;
+        ctermfg.__raw = toString cterm.backHighlight;
       };
     };
   };
