@@ -7,8 +7,8 @@
       url = "github:nix-community/nixvim?ref=nixos-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    topiary = {
-      url = "github:tweag/topiary";
+    nufmt = {
+      url = "github:nushell/nufmt";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     color-themes.url = "github:1gmar/color-themes";
@@ -19,7 +19,7 @@
       color-themes,
       nixpkgs,
       nixvim,
-      topiary,
+      nufmt,
       ...
     }:
     let
@@ -30,10 +30,7 @@
         extraSpecialArgs = {
           inherit theme;
           inherit system;
-          topiary = {
-            lib = topiary.lib.${system};
-            inherit (topiary.packages.${system}) topiary-cli;
-          };
+          nufmt = nufmt.packages.${system}.nufmt;
           tsGrmrPkgs = pkgs.vimPlugins.nvim-treesitter.builtGrammars;
         };
       };
@@ -81,6 +78,9 @@
       };
       formatter.${system} = pkgs.nixfmt;
       lib.mkNixvimWith = mkNixvimWith;
-      packages.${system}.default = mkNixvimWith { };
+      packages.${system} = {
+        default = mkNixvimWith { };
+        nvim = nvim.extend { };
+      };
     };
 }
