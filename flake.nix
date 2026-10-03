@@ -89,7 +89,7 @@
         ];
       };
       formatter.${system} = pkgs.nixfmt;
-      lib.mkNixvimWith = mkNixvimWith;
+      lib.${system}.mkNixvimWith = mkNixvimWith;
       packages.${system} = mkNixvimWith { };
     };
 }
