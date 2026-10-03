@@ -72,7 +72,7 @@
     {
       checks.${system} = {
         default = nixvim.lib.${system}.check.mkTestDerivationFromNvim {
-          inherit nvim;
+          nvim = nvim.extend { };
           name = "Nvim";
         };
         tty-vim = nixvim.lib.${system}.check.mkTestDerivationFromNvim {

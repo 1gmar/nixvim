@@ -1,4 +1,5 @@
 {
+  colors,
   config,
   lib,
   pkgs,
@@ -69,7 +70,7 @@ in
           "\"pl\"" = {
             icon = "";
             color = "#725C2A";
-            cterm_color = "94";
+            cterm_color = toString colors.cterm.yellow;
             name = "Prolog";
           };
         };
