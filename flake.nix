@@ -46,15 +46,27 @@
           finalNvim = nvim.extend module;
           finalTTYNvim = darkNvim.extend module;
         in
-        pkgs.writeShellApplication {
-          name = "nvim";
-          text = ''
-            if [[ "$TERM" == "linux" ]]; then
-              exec ${pkgs.lib.getExe finalTTYNvim} "$@"
-            else
-              exec ${pkgs.lib.getExe finalNvim} "$@"
-            fi
-          '';
+        {
+          default = pkgs.writeShellApplication {
+            name = "nvim";
+            text = ''
+              if [[ "$TERM" == "linux" ]]; then
+                exec ${pkgs.lib.getExe finalTTYNvim} "$@"
+              else
+                exec ${pkgs.lib.getExe finalNvim} "$@"
+              fi
+            '';
+          };
+          nixvim-print-init = pkgs.writeShellApplication {
+            name = "nixvim-print-init";
+            text = ''
+              if [[ "$TERM" == "linux" ]]; then
+                exec ${pkgs.lib.getExe' finalTTYNvim "nixvim-print-init"}
+              else
+                exec ${pkgs.lib.getExe' finalNvim "nixvim-print-init"}
+              fi
+            '';
+          };
         };
     in
     {
@@ -73,14 +85,11 @@
           (mkNixvimWith {
             git.enable = true;
             lua.enable = true;
-          })
+          }).default
         ];
       };
       formatter.${system} = pkgs.nixfmt;
       lib.mkNixvimWith = mkNixvimWith;
-      packages.${system} = {
-        default = mkNixvimWith { };
-        nvim = nvim.extend { };
-      };
+      packages.${system} = mkNixvimWith { };
     };
 }
