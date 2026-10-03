@@ -11,6 +11,10 @@
       url = "github:nushell/nufmt";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    topiary = {
+      url = "github:tweag/topiary";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     color-themes.url = "github:1gmar/color-themes";
   };
 
@@ -20,6 +24,7 @@
       nixpkgs,
       nixvim,
       nufmt,
+      topiary,
       ...
     }:
     let
@@ -31,6 +36,10 @@
           inherit theme;
           inherit system;
           nufmt = nufmt.packages.${system}.nufmt;
+          topiary = {
+            lib = topiary.lib.${system};
+            inherit (topiary.packages.${system}) topiary-cli;
+          };
           tsGrmrPkgs = pkgs.vimPlugins.nvim-treesitter.builtGrammars;
         };
       };
