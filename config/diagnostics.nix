@@ -33,11 +33,36 @@
       virtual_text = false;
     };
     highlightOverride = with colors; {
+      DiagnosticError = {
+        nocombine = true;
+        fg = gui.red;
+        ctermfg.__raw = toString cterm.red;
+      };
       DiagnosticErrorLine = {
         bg = gui.orange;
         fg = gui.background;
         ctermbg.__raw = toString cterm.orange;
         ctermfg.__raw = toString cterm.backHighlight;
+      };
+      DiagnosticHint = {
+        nocombine = true;
+        fg = gui.blue;
+        ctermfg.__raw = toString cterm.blue;
+      };
+      DiagnosticInfo = {
+        nocombine = true;
+        fg = gui.cyan;
+        ctermfg.__raw = toString cterm.cyan;
+      };
+      DiagnosticOk = {
+        nocombine = true;
+        fg = gui.green;
+        ctermfg.__raw = toString cterm.green;
+      };
+      DiagnosticWarn = {
+        nocombine = true;
+        fg = gui.yellow;
+        ctermfg.__raw = toString cterm.yellow;
       };
       DiagnosticWarnLine = {
         bg = gui.yellow;

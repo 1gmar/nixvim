@@ -24,7 +24,15 @@
           lualine_c = [
             "diff"
             "filename"
-            "diagnostics"
+            {
+              __unkeyed-1 = "diagnostics";
+              diagnostics_color = {
+                error = "DiagnosticError";
+                hint = "DiagnosticHint";
+                info = "DiagnosticInfo";
+                warn = "DiagnosticWarn";
+              };
+            }
           ];
           lualine_x = [
             "encoding"
