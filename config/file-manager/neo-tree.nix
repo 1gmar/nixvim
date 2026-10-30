@@ -5,16 +5,16 @@
   ...
 }:
 {
-  options.neo-tree = {
+  options.file-manager.neo-tree = {
     enable = lib.mkEnableOption "enable neo-tree module";
   };
-  config = lib.mkIf config.neo-tree.enable {
+  config = lib.mkIf config.file-manager.neo-tree.enable {
     highlightOverride = with colors; {
       NeoTreeFloatTitle = {
         bg = gui.background;
-        ctermbg.__raw = toString cterm.backHighlight;
+        ctermbg.__raw = cterm.backHighlight;
         fg = gui.orange;
-        ctermfg.__raw = toString cterm.orange;
+        ctermfg.__raw = cterm.orange;
       };
     };
     keymaps = [

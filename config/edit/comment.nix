@@ -1,9 +1,9 @@
 { config, lib, ... }:
 {
-  options.comment = {
+  options.edit.comment = {
     enable = lib.mkEnableOption "enable comment module";
   };
-  config = lib.mkIf config.comment.enable {
+  config = lib.mkIf config.edit.comment.enable {
     plugins.mini-comment.enable = true;
   };
 }

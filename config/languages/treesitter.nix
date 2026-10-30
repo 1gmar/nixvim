@@ -5,10 +5,10 @@
   ...
 }:
 {
-  options.treesitter = {
+  options.languages.treesitter = {
     enable = lib.mkEnableOption "enable treesitter module";
   };
-  config = lib.mkIf config.treesitter.enable {
+  config = lib.mkIf config.languages.treesitter.enable {
     keymaps = [
       {
         action.__raw = ''

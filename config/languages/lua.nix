@@ -6,12 +6,12 @@
   ...
 }:
 {
-  options.lua = {
+  options.languages.lua = {
     enable = lib.mkEnableOption "enable lua module";
   };
-  config = lib.mkIf config.lua.enable {
+  config = lib.mkIf config.languages.lua.enable {
+    languages.lsp.fmtOnSaveExts = [ "lua" ];
     lsp = {
-      fmtOnSaveExts = [ "lua" ];
       servers.lua_ls = {
         enable = true;
         config = {

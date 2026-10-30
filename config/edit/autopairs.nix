@@ -1,9 +1,9 @@
 { config, lib, ... }:
 {
-  options.autopairs = {
+  options.edit.autopairs = {
     enable = lib.mkEnableOption "enable autopairs module";
   };
-  config = lib.mkIf config.autopairs.enable {
+  config = lib.mkIf config.edit.autopairs.enable {
     plugins.mini-pairs.enable = true;
   };
 }

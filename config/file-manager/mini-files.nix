@@ -1,9 +1,9 @@
 { config, lib, ... }:
 {
-  options.mini-files = {
+  options.file-manager.mini-files = {
     enable = lib.mkEnableOption "enable mini-files module";
   };
-  config = lib.mkIf config.mini-files.enable {
+  config = lib.mkIf config.file-manager.mini-files.enable {
     autoCmd = [
       {
         callback.__raw = "require('mini-files').dotfiles_toggle";

@@ -5,19 +5,19 @@
   ...
 }:
 let
-  isAnsiDiff = config.mini-git.enableExtDiff && config.ansi-coloring.enable;
-  isAnsiEnabledStr = lib.boolToString config.ansi-coloring.enable;
+  isAnsiDiff = config.git.mini-git.enableExtDiff && config.ui.ansi-coloring.enable;
+  isAnsiEnabledStr = lib.boolToString config.ui.ansi-coloring.enable;
   miniGitWrapper = pkgs.writers.makeScriptWriter {
     interpreter = "${lib.getExe pkgs.neovim} -l";
   } "/bin/mini-git-wrapper" (builtins.readFile ./mini-git-wrapper.lua);
   mgWrapperExe = lib.getExe miniGitWrapper;
 in
 {
-  options.mini-git = {
+  options.git.mini-git = {
     enable = lib.mkEnableOption "enable mini-git module";
     enableExtDiff = lib.mkEnableOption "enable mini-git external diff tool integration";
   };
-  config = lib.mkIf config.mini-git.enable {
+  config = lib.mkIf config.git.mini-git.enable {
     autoCmd = [
       {
         callback.__raw = "require('mini-git-utils').on_blame";
@@ -52,7 +52,7 @@ in
     ];
     plugins.mini-git = {
       enable = true;
-      settings.job.git_executable = lib.mkIf config.mini-git.enableExtDiff "${mgWrapperExe}";
+      settings.job.git_executable = lib.mkIf config.git.mini-git.enableExtDiff "${mgWrapperExe}";
     };
   };
 }

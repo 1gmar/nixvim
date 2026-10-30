@@ -1,9 +1,9 @@
 { config, lib, ... }:
 {
-  options.search-options = {
+  options.search.options = {
     enable = lib.mkEnableOption "enable search options module";
   };
-  config = lib.mkIf config.search-options.enable {
+  config = lib.mkIf config.search.options.enable {
     opts = {
       ignorecase = true;
       smartcase = true;

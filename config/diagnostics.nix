@@ -36,39 +36,39 @@
       DiagnosticError = {
         nocombine = true;
         fg = gui.red;
-        ctermfg.__raw = toString cterm.red;
+        ctermfg.__raw = cterm.red;
       };
       DiagnosticErrorLine = {
         bg = gui.orange;
         fg = gui.background;
-        ctermbg.__raw = toString cterm.orange;
-        ctermfg.__raw = toString cterm.backHighlight;
+        ctermbg.__raw = cterm.orange;
+        ctermfg.__raw = cterm.backHighlight;
       };
       DiagnosticHint = {
         nocombine = true;
         fg = gui.blue;
-        ctermfg.__raw = toString cterm.blue;
+        ctermfg.__raw = cterm.blue;
       };
       DiagnosticInfo = {
         nocombine = true;
         fg = gui.cyan;
-        ctermfg.__raw = toString cterm.cyan;
+        ctermfg.__raw = cterm.cyan;
       };
       DiagnosticOk = {
         nocombine = true;
         fg = gui.green;
-        ctermfg.__raw = toString cterm.green;
+        ctermfg.__raw = cterm.green;
       };
       DiagnosticWarn = {
         nocombine = true;
         fg = gui.yellow;
-        ctermfg.__raw = toString cterm.yellow;
+        ctermfg.__raw = cterm.yellow;
       };
       DiagnosticWarnLine = {
         bg = gui.yellow;
         fg = gui.background;
-        ctermbg.__raw = toString cterm.yellow;
-        ctermfg.__raw = toString cterm.backHighlight;
+        ctermbg.__raw = cterm.yellow;
+        ctermfg.__raw = cterm.backHighlight;
       };
     };
   };

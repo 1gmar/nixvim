@@ -5,10 +5,10 @@
   ...
 }:
 {
-  options.telescope = {
+  options.search.telescope = {
     enable = lib.mkEnableOption "enable telescope module";
   };
-  config = lib.mkIf config.telescope.enable {
+  config = lib.mkIf config.search.telescope.enable {
     extraPackages = with pkgs; [ ripgrep ];
     plugins.telescope = {
       enable = true;

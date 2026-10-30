@@ -7,10 +7,10 @@
   ...
 }:
 {
-  options.nix = {
+  options.languages.nix = {
     enable = lib.mkEnableOption "enable nix module";
   };
-  config = lib.mkIf config.nix.enable {
+  config = lib.mkIf config.languages.nix.enable {
     autoCmd = [
       {
         command = "inoremap <buffer> <C-'> '''';<Esc>3ha";
@@ -19,8 +19,8 @@
       }
     ];
     extraPackages = [ pkgs.nixfmt ];
+    languages.lsp.fmtOnSaveExts = [ "nix" ];
     lsp = {
-      fmtOnSaveExts = [ "nix" ];
       servers.nixd = {
         enable = true;
         config = {

@@ -1,18 +1,18 @@
 { config, lib, ... }:
 {
-  options.lsp = with lib; {
+  options.languages.lsp = with lib; {
     enable = mkEnableOption "enable lsp module";
     fmtOnSaveExts = mkOption {
       type = with types; listOf str;
       default = [ ];
     };
   };
-  config = lib.mkIf config.lsp.enable {
+  config = lib.mkIf config.languages.lsp.enable {
     autoCmd = [
       {
         command = "lua vim.lsp.buf.format()";
         event = [ "BufWritePre" ];
-        pattern = map (ext: "*." + ext) config.lsp.fmtOnSaveExts;
+        pattern = map (ext: "*." + ext) config.languages.lsp.fmtOnSaveExts;
       }
     ];
     lsp = {
@@ -53,7 +53,7 @@
           toggle_key = "<A-p>";
         };
       };
-      telescope = lib.mkIf config.telescope.enable {
+      telescope = lib.mkIf config.search.telescope.enable {
         keymaps = {
           "<leader>gd" = {
             action = "lsp_definitions";

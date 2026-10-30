@@ -7,8 +7,8 @@
   options.search = {
     enable = lib.mkEnableOption "enable search module";
   };
-  config = lib.mkIf config.search.enable {
-    search-options.enable = lib.mkDefault true;
+  config.search = lib.mkIf config.search.enable {
+    options.enable = lib.mkDefault true;
     telescope.enable = lib.mkDefault true;
   };
 }

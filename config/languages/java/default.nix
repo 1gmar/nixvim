@@ -6,7 +6,7 @@
   ...
 }:
 {
-  options.java = {
+  options.languages.java = {
     enable = lib.mkEnableOption "enable java module";
     package = lib.mkPackageOption pkgs "java package" {
       default = "temurin-bin-25";
@@ -15,8 +15,8 @@
       type = lib.types.str;
     };
   };
-  config = lib.mkIf config.java.enable {
-    lsp.fmtOnSaveExts = [ "java" ];
+  config = lib.mkIf config.languages.java.enable {
+    languages.lsp.fmtOnSaveExts = [ "java" ];
     extraFiles = {
       "lua/jdtls-utils.lua".source = ./jdtls-utils.lua;
     };

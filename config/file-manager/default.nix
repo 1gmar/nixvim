@@ -7,7 +7,7 @@
   options.file-manager = {
     enable = lib.mkEnableOption "enable file-manager module";
   };
-  config = lib.mkIf config.file-manager.enable {
+  config.file-manager = lib.mkIf config.file-manager.enable {
     mini-files.enable = lib.mkDefault true;
     neo-tree.enable = lib.mkDefault true;
   };

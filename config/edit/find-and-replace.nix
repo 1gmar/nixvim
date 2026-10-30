@@ -1,9 +1,9 @@
 { config, lib, ... }:
 {
-  options.find-and-replace = {
+  options.edit.find-and-replace = {
     enable = lib.mkEnableOption "enable find-and-replace module";
   };
-  config = lib.mkIf config.find-and-replace.enable {
+  config = lib.mkIf config.edit.find-and-replace.enable {
     keymaps = [
       {
         action = "<cmd>GrugFar<cr>";

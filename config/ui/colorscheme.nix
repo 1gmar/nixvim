@@ -6,11 +6,17 @@
   ...
 }:
 {
-  options.color-scheme = {
+  options.ui.color-scheme = {
     enable = lib.mkEnableOption "enable color-scheme module";
   };
-  config = lib.mkIf config.color-scheme.enable {
+  config = lib.mkIf config.ui.color-scheme.enable {
     colorscheme = lib.mkDefault "solarized8";
+    extraConfigLuaPre = ''
+      if os.getenv('TERM') == 'linux' then
+        vim.g.solarized_t_Co = 16
+        vim.o.background = 'dark'
+      end
+    '';
     extraPlugins = with pkgs.vimPlugins; [
       (vim-solarized8.overrideAttrs {
         src = pkgs.fetchgit {
@@ -23,33 +29,68 @@
     highlightOverride = with colors; {
       Cursor = {
         bg = gui.primaryContent;
-        ctermbg.__raw = toString cterm.white or cterm.primaryContent;
+        ctermbg.__raw = cterm.black;
         fg = gui.background;
-        ctermfg.__raw = toString cterm.background;
+        ctermfg.__raw = cterm.background;
+      };
+      ErrorMsg = {
+        ctermbg.__raw = cterm.background;
+        update = true;
       };
       FloatBorder = {
         bg = gui.background;
-        ctermbg.__raw = toString cterm.backHighlight;
+        ctermbg.__raw = cterm.background;
         fg = gui.highlight;
-        ctermfg.__raw = toString cterm.highlight;
+        ctermfg.__raw = cterm.highlight;
+      };
+      Normal = {
+        ctermbg.__raw = cterm.background;
+        ctermfg.__raw = cterm.primaryContent;
+        update = true;
       };
       NormalFloat = {
         bg = gui.background;
-        ctermbg.__raw = toString cterm.backHighlight;
+        ctermbg.__raw = cterm.background;
         fg = gui.highlight;
-        ctermfg.__raw = toString cterm.highlight;
+        ctermfg.__raw = cterm.highlight;
+      };
+      PmenuSbar = {
+        ctermbg.__raw = cterm.black;
+        update = true;
+      };
+      PmenuSel = {
+        link = "Visual";
+      };
+      PmenuThumb = {
+        ctermbg.__raw = cterm.blue;
+        update = true;
+      };
+      StatusLine = {
+        ctermbg.__raw = cterm.background;
+        ctermfg.__raw = cterm.blue;
+        update = true;
+      };
+      StatusLineNC = {
+        ctermbg.__raw = cterm.background;
+        ctermfg.__raw = cterm.cyan;
+        update = true;
+      };
+      Visual = {
+        ctermbg.__raw = cterm.background;
+        ctermfg.__raw = cterm.black;
+        update = true;
       };
       VertSplit = {
         bg = gui.background;
-        ctermbg.__raw = toString cterm.backHighlight;
+        ctermbg.__raw = cterm.background;
         fg = gui.highlight;
-        ctermfg.__raw = toString cterm.highlight;
+        ctermfg.__raw = cterm.highlight;
       };
       WinSeparator = {
         bg = gui.background;
-        ctermbg.__raw = toString cterm.backHighlight;
+        ctermbg.__raw = cterm.background;
         fg = gui.highlight;
-        ctermfg.__raw = toString cterm.highlight;
+        ctermfg.__raw = cterm.highlight;
       };
     };
   };

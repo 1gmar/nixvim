@@ -1,9 +1,9 @@
 { config, lib, ... }:
 {
-  options.mini-notify = {
-    enable = lib.mkEnableOption "enable mini-notify module";
+  options.ui.notification = {
+    enable = lib.mkEnableOption "enable notification module";
   };
-  config = lib.mkIf config.mini-notify.enable {
+  config = lib.mkIf config.ui.notification.enable {
     extraConfigLuaPost = ''
       vim.notify = require('mini.notify').make_notify()
     '';

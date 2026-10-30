@@ -15,7 +15,7 @@ let
   };
 in
 {
-  options.prolog = {
+  options.languages.prolog = {
     enable = lib.mkEnableOption "enable prolog module";
     lsp = lib.mkOption {
       type =
@@ -42,19 +42,19 @@ in
       default = { };
     };
   };
-  config = lib.mkIf config.prolog.enable {
+  config = lib.mkIf config.languages.prolog.enable {
     extraPackages = lib.mkIf config.prolog.lsp.enable [ pkgs.swi-prolog ];
     filetype.extension = {
       pl = "prolog";
     };
-    lsp = lib.mkIf config.prolog.lsp.enable {
-      fmtOnSaveExts = [ "pl" ];
+    languages.lsp.fmtOnSaveExts = [ "pl" ];
+    lsp = lib.mkIf config.languages.prolog.lsp.enable {
       servers.prolog_ls = {
-        inherit (config.prolog.lsp) enable;
+        inherit (config.languages.prolog.lsp) enable;
         name = "prolog_ls";
         package = null;
         config = {
-          inherit (config.prolog.lsp) cmd;
+          inherit (config.languages.prolog.lsp) cmd;
           filetypes = [ "prolog" ];
           rootMarkers = [
             "packs.pl"
@@ -70,7 +70,7 @@ in
           "\"pl\"" = {
             icon = "";
             color = "#725C2A";
-            cterm_color = toString colors.cterm.yellow;
+            cterm_color = colors.cterm.yellow;
             name = "Prolog";
           };
         };

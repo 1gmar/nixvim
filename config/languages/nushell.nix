@@ -44,7 +44,7 @@ let
   };
 in
 {
-  options.nushell = with lib; {
+  options.languages.nushell = with lib; {
     enable = mkEnableOption "enable nushell module";
     nufmt-enable = mkEnableOption "enable nufmt";
     vimshell = mkOption {
@@ -64,10 +64,10 @@ in
       default = { };
     };
   };
-  config = lib.mkIf config.nushell.enable {
+  config = lib.mkIf config.languages.nushell.enable {
     env.TOPIARY_LANGUAGE_DIR = "${topiaryNushell}/queries";
+    languages.lsp.fmtOnSaveExts = [ "nu" ];
     lsp = {
-      fmtOnSaveExts = [ "nu" ];
       servers.nushell = {
         enable = true;
         config = {

@@ -1,9 +1,14 @@
 { config, lib, ... }:
 {
-  options.ui-options = {
+  options.ui.options = {
     enable = lib.mkEnableOption "enable ui options module";
   };
-  config = lib.mkIf config.ui-options.enable {
+  config = lib.mkIf config.ui.options.enable {
+    extraConfigLuaPost = ''
+      if os.getenv('TERM') == 'linux' then
+        vim.o.guicursor = ""
+      end
+    '';
     opts = {
       background = lib.mkDefault "light";
       colorcolumn = "100";

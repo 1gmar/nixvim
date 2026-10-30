@@ -5,38 +5,38 @@
   ...
 }:
 {
-  options.delimiters = {
+  options.ui.delimiters = {
     enable = lib.mkEnableOption "enable delimiters module";
   };
-  config = lib.mkIf config.delimiters.enable {
+  config = lib.mkIf config.ui.delimiters.enable {
     highlightOverride = with colors; {
       RainbowDelimiterRed = {
         fg = gui.red;
-        ctermfg.__raw = toString cterm.red;
+        ctermfg.__raw = cterm.red;
       };
       RainbowDelimiterYellow = {
         fg = gui.yellow;
-        ctermfg.__raw = toString cterm.yellow;
+        ctermfg.__raw = cterm.yellow;
       };
       RainbowDelimiterBlue = {
         fg = gui.blue;
-        ctermfg.__raw = toString cterm.blue;
+        ctermfg.__raw = cterm.blue;
       };
       RainbowDelimiterOrange = {
         fg = gui.orange;
-        ctermfg.__raw = toString cterm.orange;
+        ctermfg.__raw = cterm.orange;
       };
       RainbowDelimiterGreen = {
         fg = gui.green;
-        ctermfg.__raw = toString cterm.green;
+        ctermfg.__raw = cterm.green;
       };
       RainbowDelimiterViolet = {
         fg = gui.violet;
-        ctermfg.__raw = toString cterm.violet;
+        ctermfg.__raw = cterm.violet;
       };
       RainbowDelimiterCyan = {
         fg = gui.cyan;
-        ctermfg.__raw = toString cterm.cyan;
+        ctermfg.__raw = cterm.cyan;
       };
     };
     plugins.rainbow-delimiters.enable = true;

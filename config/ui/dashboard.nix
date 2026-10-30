@@ -1,9 +1,9 @@
 { config, lib, ... }:
 {
-  options.dashboard = {
+  options.ui.dashboard = {
     enable = lib.mkEnableOption "enable dashboard module";
   };
-  config = lib.mkIf config.dashboard.enable {
+  config = lib.mkIf config.ui.dashboard.enable {
     plugins.alpha = {
       enable = true;
       theme = "dashboard";

@@ -1,9 +1,9 @@
 { config, lib, ... }:
 {
-  options.dap = {
+  options.languages.dap = {
     enable = lib.mkEnableOption "enable dap module";
   };
-  config = lib.mkIf config.dap.enable {
+  config = lib.mkIf config.languages.dap.enable {
     plugins.dap = {
       enable = true;
     };

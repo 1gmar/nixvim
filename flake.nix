@@ -28,12 +28,11 @@
       ...
     }:
     let
-      theme = color-themes.solarized;
       nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
         module = ./config;
         inherit pkgs;
         extraSpecialArgs = {
-          inherit theme;
+          colors = color-themes.solarized.light;
           inherit system;
           nufmt = nufmt.packages.${system}.nufmt;
           topiary = {
@@ -48,57 +47,24 @@
         inherit system;
       };
       system = "x86_64-linux";
-      darkNvim = nvim.extend ./config/ui/dark-cterm-lualine.nix;
-      mkNixvimWith =
-        module:
-        let
-          finalNvim = nvim.extend module;
-          finalTTYNvim = darkNvim.extend module;
-        in
-        {
-          default = pkgs.writeShellApplication {
-            name = "nvim";
-            text = ''
-              if [[ "$TERM" == "linux" ]]; then
-                exec ${pkgs.lib.getExe finalTTYNvim} "$@"
-              else
-                exec ${pkgs.lib.getExe finalNvim} "$@"
-              fi
-            '';
-          };
-          nixvim-print-init = pkgs.writeShellApplication {
-            name = "nixvim-print-init";
-            text = ''
-              if [[ "$TERM" == "linux" ]]; then
-                exec ${pkgs.lib.getExe' finalTTYNvim "nixvim-print-init"}
-              else
-                exec ${pkgs.lib.getExe' finalNvim "nixvim-print-init"}
-              fi
-            '';
-          };
-        };
     in
     {
-      checks.${system} = {
-        default = nixvim.lib.${system}.check.mkTestDerivationFromNvim {
-          nvim = nvim.extend { };
-          name = "Nvim";
-        };
-        tty-vim = nixvim.lib.${system}.check.mkTestDerivationFromNvim {
-          nvim = darkNvim;
-          name = "Dark Nvim";
-        };
+      checks.${system}.default = nixvim.lib.${system}.check.mkTestDerivationFromNvim {
+        nvim = nvim.extend { };
+        name = "Nvim";
       };
       devShells.${system}.default = pkgs.mkShellNoCC {
         packages = [
-          (mkNixvimWith {
-            git.enable = true;
-            lua.enable = true;
-          }).default
+          (nvim.extend {
+            git = {
+              enable = true;
+              mini-git.enableExtDiff = true;
+            };
+            languages.lua.enable = true;
+          })
         ];
       };
       formatter.${system} = pkgs.nixfmt;
-      lib.${system}.mkNixvimWith = mkNixvimWith;
-      packages.${system} = mkNixvimWith { };
+      packages.${system}.default = nvim;
     };
 }

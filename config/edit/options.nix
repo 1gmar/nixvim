@@ -1,9 +1,9 @@
 { config, lib, ... }:
 {
-  options.indent-options = {
+  options.edit.options = {
     enable = lib.mkEnableOption "enable indent options module";
   };
-  config = lib.mkIf config.indent-options.enable {
+  config = lib.mkIf config.edit.options.enable {
     opts = {
       breakindent = true;
       expandtab = true;

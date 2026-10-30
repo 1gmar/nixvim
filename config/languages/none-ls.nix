@@ -5,11 +5,11 @@
   ...
 }:
 {
-  options.none-ls = {
+  options.languages.none-ls = {
     enable = lib.mkEnableOption "enable none-ls module";
   };
-  config = lib.mkIf config.none-ls.enable {
-    lsp.fmtOnSaveExts = [
+  config = lib.mkIf config.languages.none-ls.enable {
+    languages.lsp.fmtOnSaveExts = [
       "css"
       "html"
       "json"

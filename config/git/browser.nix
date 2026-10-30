@@ -1,9 +1,9 @@
 { config, lib, ... }:
 {
-  options.browser = {
+  options.git.browser = {
     enable = lib.mkEnableOption "enable git browser module";
   };
-  config = lib.mkIf (config.browser.enable && config.telescope.enable) {
+  config = lib.mkIf (config.git.browser.enable && config.search.telescope.enable) {
     extraFiles = {
       "lua/git-previewers.lua".source = ./git-previewers.lua;
     };
