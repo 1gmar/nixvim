@@ -9,6 +9,7 @@
 }:
 with topiary.lib;
 let
+  cfg = config.languages.nushell;
   nufmtConfig = pkgs.writers.writeJSON "nufmt-config.json" {
     indent = 2;
     indent_char = "space";
@@ -42,6 +43,24 @@ let
     package = topiary.topiary-cli;
     config = prefetchLanguages topiaryConfigWithHash;
   };
+  genFormatter =
+    {
+      name,
+      args,
+      cmd,
+    }:
+    ''
+      null_ls.register({
+        name = '${name}',
+        method = null_ls.methods.FORMATTING,
+        filetypes = { 'nu' },
+        generator = null_ls.formatter({
+          args = ${lib.nixvim.lua.toLuaObject args},
+          command = '${lib.getExe cmd}',
+          to_stdin = true,
+        })
+      })
+    '';
 in
 {
   options.languages.nushell = with lib; {
@@ -64,7 +83,7 @@ in
       default = { };
     };
   };
-  config = lib.mkIf config.languages.nushell.enable {
+  config = lib.mkIf cfg.enable {
     env.TOPIARY_LANGUAGE_DIR = "${topiaryNushell}/queries";
     languages.lsp.fmtOnSaveExts = [ "nu" ];
     lsp = {
@@ -86,9 +105,9 @@ in
         packageFallback = true;
       };
     };
-    opts = lib.mkIf config.nushell.vimshell.enable {
-      shell = "${config.nushell.vimshell.shell}";
-      shellcmdflag = "--stdin --no-newline --config ${config.nushell.vimshell.config} -c";
+    opts = lib.mkIf cfg.vimshell.enable {
+      shell = "${cfg.vimshell.shell}";
+      shellcmdflag = "--stdin --no-newline --config ${cfg.vimshell.config} -c";
       shellpipe = "| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record";
       shellredir = "out+err> %s";
       shelltemp = false;
@@ -98,33 +117,28 @@ in
     };
     plugins = {
       none-ls = {
-        luaConfig.post =
-          if config.nushell.nufmt-enable then
-            ''
-              null_ls.register({
-                name = 'nufmt',
-                method = null_ls.methods.FORMATTING,
-                filetypes = { 'nu' },
-                generator = null_ls.formatter({
-                  args = { '--stdin', '-c', '${fmtConfig}' },
-                  command = '${lib.getExe nufmt}',
-                  to_stdin = true,
-                })
-              })
-            ''
+        luaConfig.post = genFormatter (
+          if cfg.nufmt-enable then
+            {
+              name = "nufmt";
+              args = [
+                "--stdin"
+                "-c"
+                fmtConfig
+              ];
+              cmd = nufmt;
+            }
           else
-            ''
-              null_ls.register({
-                name = 'topiary-nushell',
-                method = null_ls.methods.FORMATTING,
-                filetypes = { 'nu' },
-                generator = null_ls.formatter({
-                  args = { 'format', '--language', 'nu' },
-                  command = '${lib.getExe topiaryWrapper}',
-                  to_stdin = true,
-                })
-              })
-            '';
+            {
+              name = "topiary-nushell";
+              args = [
+                "format"
+                "--language"
+                "nu"
+              ];
+              cmd = topiaryWrapper;
+            }
+        );
       };
       treesitter.grammarPackages = [ tsGrmrPkgs.nu ];
     };

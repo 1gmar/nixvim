@@ -42,6 +42,7 @@
           tsGrmrPkgs = pkgs.vimPlugins.nvim-treesitter.builtGrammars;
         };
       };
+      target = nvim.extend { };
       pkgs = import nixpkgs {
         config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [ "vim-solarized8" ];
         inherit system;
@@ -50,7 +51,7 @@
     in
     {
       checks.${system}.default = nixvim.lib.${system}.check.mkTestDerivationFromNvim {
-        nvim = nvim.extend { };
+        nvim = target;
         name = "Nvim";
       };
       devShells.${system}.default = pkgs.mkShellNoCC {
@@ -65,6 +66,6 @@
         ];
       };
       formatter.${system} = pkgs.nixfmt;
-      packages.${system}.default = nvim;
+      packages.${system}.default = target;
     };
 }
