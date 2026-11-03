@@ -4,6 +4,13 @@
     enable = lib.mkEnableOption "enable keymappings module";
   };
   config = lib.mkIf config.keymappings.enable {
+    extraConfigLuaPost = ''
+      if os.getenv('TERM') == 'linux' then
+        vim.keymap.set('i', '<A-:>', '<Esc>mxA;<Esc>`xa')
+      else
+        vim.keymap.set('i', '<A-S-;>', '<Esc>mxA;<Esc>`xa')
+      end
+    '';
     globals = {
       mapleader = " ";
       maplocalleader = "\\";
@@ -52,11 +59,6 @@
       {
         action = "<C-o>A;";
         key = "<A-;>";
-        mode = "i";
-      }
-      {
-        action = "<Esc>mxA;<Esc>`xa";
-        key = "<A-S-;>";
         mode = "i";
       }
       {
