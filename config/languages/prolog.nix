@@ -43,7 +43,7 @@ in
     };
   };
   config = lib.mkIf config.languages.prolog.enable {
-    extraPackages = lib.mkIf config.prolog.lsp.enable [ pkgs.swi-prolog ];
+    extraPackages = lib.mkIf config.languages.prolog.lsp.enable [ pkgs.swi-prolog ];
     filetype.extension = {
       pl = "prolog";
     };
