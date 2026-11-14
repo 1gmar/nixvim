@@ -43,6 +43,7 @@
       enable = true;
       folding.enable = true;
       grammarPackages = with tsGrmrPkgs; [
+        bash
         css
         csv
         gitcommit
