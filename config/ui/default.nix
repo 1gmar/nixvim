@@ -10,6 +10,7 @@
     ./indentscope.nix
     ./notification.nix
     ./statusline.nix
+    ./winbar.nix
   ];
   options.ui = {
     enable = lib.mkEnableOption "enable ui module";
@@ -24,5 +25,6 @@
     notification.enable = lib.mkDefault true;
     options.enable = lib.mkDefault true;
     statusline.enable = lib.mkDefault true;
+    winbar.enable = lib.mkDefault true;
   };
 }

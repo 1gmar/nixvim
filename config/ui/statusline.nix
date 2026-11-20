@@ -102,7 +102,6 @@
           lualine_x = [
             "encoding"
             "fileformat"
-            "filetype"
             {
               __unkeyed-1 = "lsp_status";
               ignore_lsp = [ "null-ls" ];
