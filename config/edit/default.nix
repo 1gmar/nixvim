@@ -5,8 +5,8 @@
     ./comment.nix
     ./find-and-replace.nix
     ./options.nix
-    ./selection.nix
     ./surround.nix
+    ./textobjects.nix
   ];
   options.edit = {
     enable = lib.mkEnableOption "enable edit module";
@@ -16,7 +16,7 @@
     comment.enable = lib.mkDefault true;
     find-and-replace.enable = lib.mkDefault true;
     options.enable = lib.mkDefault true;
-    selection.enable = lib.mkDefault true;
     surround.enable = lib.mkDefault true;
+    textobjects.enable = lib.mkDefault true;
   };
 }
